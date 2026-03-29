@@ -19,7 +19,7 @@ class ServiceMatiere {
         return $matiere;    
     }
 
-    public function srupprimer(Matiere $matiere):bool{
+    public function supprimer(Matiere $matiere):bool{
         return $matiere->delete();
     }
 }
