@@ -5,9 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\Token;
+use Illuminate\Support\Facades\Auth;
 
-class TokenMiddleware
+class ProfesseurMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,15 +16,9 @@ class TokenMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $tokenValue = $request->header('Authorization');
-
-        $token = Token::where('token', $tokenValue)->first();
-
-        if (!$token) {
-        return response()->json(['message' => 'Unauthorized'], 401);
+         if(Auth::user()->role->name !== 'professeur'){
+            abort(403, 'n est pas le doit de fair cette action');
         }
-
-        auth()->login($token->user);
         return $next($request);
     }
 }

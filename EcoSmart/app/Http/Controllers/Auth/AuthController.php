@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
-use App\Models\Token;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -21,13 +20,19 @@ class AuthController extends Controller
 
         $user = User::create($validated);
 
-        $token = $user->tokens()->create([
-            'token'=>Str::random(60),
-        ]);
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
+            'success'=> true,
             'message'=> 'register avec success ',
-            'token'=> $token->token,
+            'data'=> [
+                'firstname'=> $user->firstname,
+                'lastname'=> $user->lastname,
+                'email'=> $user->email,
+                'adresse'=> $user->adresse,
+                'role'=>$user->role->name,
+            ],
+            'token'=> $token,
         ]);
     }
 
@@ -42,28 +47,37 @@ class AuthController extends Controller
             return response()->json(['message'=> 'email ou mote de passe incorrect'], 401);
         };
 
-        $token = $user->tokens()->create([
-            'token'=>Str::random(60),
-        ]);
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
+            'success'=> true,
             'message'=>'connexion reussie',
-            'token'=> $token->token
+            'data'=> [
+                'firstname'=> $user->firstname,
+                'lastname'=> $user->lastname,
+                'email'=> $user->email,
+                'adresse'=> $user->adresse,
+                'role'=>$user->role->name,
+            ],
+            'token'=> $token
         ]);
 
     }
 
     public function logout(Request $request){
-        $tokenValue = $request->header('Authorization');
-
-        $token = Token::where('token', $tokenValue)->first();
         
-        if(!$token){
-            return response()->json(['message'=> 'Unauthorized'], 401);
+        $user = Auth::user();
+        if(!$user){
+            return response()->json([
+                'success'=> false,
+                'message'=> 'Utilisateur non authentife'
+            ], 401);
         }
-        $token->delete();
+        $user->currentAccessToken()->delete();
 
-        return response()->json(['message'=> 'loggout success']);
+         return response()->json([
+            'success'=> true,
+            'message'=> "deconnexion avec reussie ",
+        ]);
     }
-
 }

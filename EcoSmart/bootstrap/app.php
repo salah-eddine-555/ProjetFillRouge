@@ -3,7 +3,9 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use App\Http\Middleware\TokenMiddleware;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\EleveMiddleware;
+use App\Http\Middleware\ProfesseurMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -13,7 +15,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->alias(['token'=>TokenMiddleware::class]);
+        $middleware->alias([
+            'admin'=> AdminMiddleware::class,
+            'eleve'=> EleveMiddleware::class,
+            'prof'=> ProfesseurMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
