@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\NiveauController;
 use App\Http\Controllers\MatiereController;
+use App\Http\Controllers\ProfileController;
 
 
 
@@ -33,12 +34,13 @@ Route::middleware('auth:sanctum')->group(function(){
 
     //Routes pour les actions professeur
     Route::middleware('prof')->group(function(){
-        //
+            Route::post('/profile/prof', [ProfileController::class, 'storeProfileProf']);
+    
     });
 
     //Routes pour les actions eleve
     Route::middleware('eleve')->group(function(){
-        //
+        Route::post('/profile/eleve', [ProfileController::class, 'storeProfileEleve']);
     });
 
 

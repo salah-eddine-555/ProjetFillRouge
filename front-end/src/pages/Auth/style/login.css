@@ -1,0 +1,55 @@
+/* ─── Variables EcoSmart ─────────────────────────────────── */
+:root {
+    --eco-green:    #3ecf6e;
+    --eco-green-dk: #27a855;
+    --eco-navy:     #0f2233;
+    --eco-navy-md:  #1a3347;
+    --eco-navy-lt:  #243f57;
+    --text-light:   #f0f4f8;
+    --text-muted:   #8ba3b8;
+    --border:       #2a4a63;
+    --input-bg:     #162d41;
+    --radius:       10px;
+}
+
+/* ─── Page entière ───────────────────────────────────────── */
+body {
+    background-color: var(--eco-navy);
+    font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+}
+
+/* ─── Titre h1 "Login" ───────────────────────────────────── */
+h1.d-flex {
+    color: white;
+    font-size: 2.1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  
+}
+
+/* ─── Conteneur centré ───────────────────────────────────── */
+.conatiner.mt-5 {
+    padding: 0 1rem;
+}
+
+/* ─── Carte formulaire (form.form-group.w-50) ────────────── */
+form.form-group {
+    background: #0f2233;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.8rem 3rem;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Accent décoratif vert en haut de la carte */
+form.form-group::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--eco-green), var(--eco-green-dk));
+}

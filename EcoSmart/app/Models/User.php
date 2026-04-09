@@ -2,6 +2,9 @@
 
 namespace App\Models;
 use App\Models\Role;
+use App\Models\ProfileEleve;
+use App\Models\ProfileProf;
+
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -53,6 +56,14 @@ class User extends Authenticatable
 
     public function role(){
         return $this->belongsTo(Role::class);
+    }
+
+    public function eleves(){
+        return $this->hasMany(ProfileEleve::class);
+    }
+
+    public function professeurs(){
+        return $this->hasMany(ProfileProf::class,);
     }
 
 }

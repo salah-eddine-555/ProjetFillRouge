@@ -1,0 +1,255 @@
+/* ─── Variables EcoSmart ─────────────────────────────────── */
+:root {
+    --eco-green:     #3ecf6e;
+    --eco-green-dk:  #27a855;
+    --eco-navy:      #0f2233;
+    --eco-navy-md:   #1a3347;
+    --eco-navy-lt:   #243f57;
+    --text-light:    #f0f4f8;
+    --text-muted:    #8ba3b8;
+    --border:        #2a4a63;
+    --error:         #ff6b6b;
+    --input-bg:      #162d41;
+    --card-bg:       #0f2233;
+    --radius:        10px;
+}
+
+/* ─── Layout principal ───────────────────────────────────── */
+.register-page {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+    background-color: var(--eco-navy);
+}
+
+/* ─── Panneau gauche ─────────────────────────────────────── */
+.register-left {
+    width: 37%;
+    background: linear-gradient(145deg, var(--eco-navy-lt) 0%, var(--eco-navy-md) 60%, #0a1a2b 100%);
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* motif géométrique décoratif */
+.register-left::before {
+    content: '';
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    border: 60px solid rgba(62, 207, 110, 0.07);
+    bottom: -100px;
+    right: -120px;
+}
+.register-left::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 40px solid rgba(62, 207, 110, 0.05);
+    top: 60px;
+    left: -60px;
+}
+
+/* Logo */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+.brand-dot  { color: var(--eco-green); font-size: 1rem; }
+.brand-eco  { color: var(--eco-navy); background: var(--eco-green);
+              padding: 1px 6px; border-radius: 5px; font-size: 1.1rem; }
+.brand-smart{ color: var(--text-light); }
+
+/* Texte central */
+.left-content {
+    margin-top: auto;
+    margin-bottom: auto;
+    position: relative;
+    z-index: 1;
+}
+.left-content h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-light);
+    line-height: 1.25;
+    margin-bottom: 1.1rem;
+}
+.left-content h1 span { color: var(--eco-green); }
+.left-content p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.left-dots {
+    display: flex;
+    gap: 8px;
+    margin-top: 2.5rem;
+}
+.left-dots span {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--eco-green);
+    opacity: 0.5;
+}
+.left-dots span:first-child { opacity: 1; }
+
+/* ─── Panneau droit ──────────────────────────────────────── */
+.register-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    background: #0b1d2c;
+}
+
+/* ─── Carte formulaire ───────────────────────────────────── */
+.register-card {
+    width: 100%;
+    max-width: 580px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem 2.8rem;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+}
+
+.card-header {
+    margin-bottom: 2rem;
+}
+.card-header h2 {
+    color: var(--text-light);
+    font-size: 1.65rem;
+    font-weight: 700;
+    margin-bottom: .3rem;
+}
+.card-header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* ─── Ligne double (prénom + nom) ────────────────────────── */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* ─── Groupe champ ───────────────────────────────────────── */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.15rem;
+}
+.form-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: .45rem;
+}
+
+.form-group input,
+.form-group select {
+    background: var(--input-bg);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-light);
+    padding: .7rem 1rem;
+    font-size: .95rem;
+    transition: border-color .2s, box-shadow .2s;
+    outline: none;
+    appearance: none;
+}
+.form-group input::placeholder { color: #4a6880; }
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--eco-green);
+    box-shadow: 0 0 0 3px rgba(62, 207, 110, 0.12);
+}
+
+
+
+
+/* ─── Erreurs champ ──────────────────────────────────────── */
+.input-error {
+    border-color: var(--error) !important;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1) !important;
+}
+.error-msg {
+    color: var(--error);
+    font-size: .78rem;
+    margin-top: .3rem;
+}
+
+/* ─── Bouton principal ───────────────────────────────────── */
+.btn-register {
+    width: 100%;
+    padding: .85rem;
+    margin-top: .6rem;
+    background: var(--eco-green);
+    color: #0b1d2c;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    letter-spacing: .2px;
+}
+.btn-register:hover:not(:disabled) {
+    background: var(--eco-green-dk);
+    box-shadow: 0 6px 20px rgba(62, 207, 110, 0.3);
+    transform: translateY(-1px);
+}
+.btn-register:disabled { opacity: .6; cursor: not-allowed; }
+
+/* Spinner loading */
+/* .spinner {
+    width: 18px; height: 18px;
+    border: 2.5px solid rgba(11,29,44,.3);
+    border-top-color: #0b1d2c;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+} */
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── Lien vers Login ────────────────────────────────────── */
+.login-redirect {
+    text-align: center;
+    margin-top: 1.6rem;
+    color: var(--text-muted);
+    font-size: .88rem;
+}
+.login-redirect span {
+    color: var(--eco-green);
+    font-weight: 600;
+    cursor: pointer;
+    transition: color .2s;
+}
+.login-redirect span:hover { color: var(--eco-green-dk); text-decoration: underline; }
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .register-page    { flex-direction: column; }
+    .register-left    { width: 100%; padding: 1.8rem 2rem; min-height: 200px; }
+    .left-content h1  { font-size: 1.4rem; }
+    .register-card    { padding: 2rem 1.5rem; }
+    .form-row         { grid-template-columns: 1fr; gap: 0; }
+}
