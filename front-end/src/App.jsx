@@ -9,11 +9,7 @@
   import Professeur from './pages/Professeur';
   import Eleve from './pages/Eleve';
   import Home from './pages/Home';
-
-
-
-
-
+  import Profile from './pages/Profile';
 
 
 
@@ -29,6 +25,7 @@
             <Route path="/logout" element={<Logout />}/>
             <Route path="/professeur" element={<Professeur />}/>
             <Route path="/eleve" element={<Eleve />}/>
+            <Route path="/profile" element={<Profile />}/>
         </Routes>
       </>
     )

@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProfileProf extends Model
 {
-    protected $fillable = ['specialite', 'expreinces', 'user_id'];
+    protected $table = 'profile_professeurs';
+
+    protected $fillable = ['specialite', 'experiences', 'user_id'];
 
     public function user(){
         return $this->belongsTo(User::class);

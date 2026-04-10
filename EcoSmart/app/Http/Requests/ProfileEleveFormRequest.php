@@ -25,7 +25,7 @@ class ProfileEleveFormRequest extends FormRequest
     {
         return [
                'sex'=> 'required|string|in:H,F',
-            'number_parent' => 'sometimes|integer',
+            'number_parent' => 'sometimes|string',
         ];
     }
 
@@ -33,7 +33,7 @@ class ProfileEleveFormRequest extends FormRequest
         return [
             'sex.required'=> 'le sex est oblegere a saise !',
             'sex.in'=> 'le sex doit etre H ou F ',
-            'number_parent.integer'=> 'le number tele doit etre entier',
+            'number_parent.string'=> 'le number tele sous format string ',
         ];
     }
 

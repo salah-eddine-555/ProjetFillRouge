@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('profile_professeurs', function (Blueprint $table) {
-            $table->integer('matricule')->unique();
+            $table->id();
             $table->string('specialite');
-            $table->integer('expreiences');
+            $table->integer('experiences');
 
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();  
             $table->timestamps();

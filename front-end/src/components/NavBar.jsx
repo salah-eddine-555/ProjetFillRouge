@@ -53,7 +53,8 @@ export default function NavBar() {
 
 
           {/* Nav Links */}
-          <ul className="navbar-nav nav-links-group align-items-lg-center mb-3 mb-lg-0">
+          {!auth && (
+             <ul className="navbar-nav nav-links-group align-items-lg-center mb-3 mb-lg-0">
             <li className="nav-item">
                 <Link to="/register" className= "nav-link eco-nav-link"> register</Link>
                 
@@ -62,6 +63,9 @@ export default function NavBar() {
               <Link to="/login" className= "nav-link eco-nav-link"> Login</Link>
             </li>
           </ul>
+
+          )}
+         
 
           {/* Right Actions */}
   

@@ -31,6 +31,11 @@ class AuthController extends Controller
                 'email'=> $user->email,
                 'adresse'=> $user->adresse,
                 'role'=>$user->role->name,
+                'profile'=> match($user->role->name){
+                    'eleve'=> $user->eleve,
+                    'professeur' => $user->prof,
+                    default => null,
+                }
             ],
             'token'=> $token,
         ]);
@@ -58,6 +63,11 @@ class AuthController extends Controller
                 'email'=> $user->email,
                 'adresse'=> $user->adresse,
                 'role'=>$user->role->name,
+                'profile'=> match($user->role->name){
+                    'eleve'=> $user->eleve,
+                    'professeur' => $user->prof,
+                    default => null,
+                }
             ],
             'token'=> $token
         ]);

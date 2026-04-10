@@ -25,14 +25,14 @@ class ProfileProfFormRequest extends FormRequest
     {
         return [
             'specialite' => 'required|string|max:255',
-            'expreince' => 'required|integer',
+            'experiences' => 'required|integer',
         ];
     }
     public function messages(){
         return [
             'specialite.required' =>' le specialite est oblegee',
-            'expreince.required'  => "L'expérience est obligatoire.",
-            'expreince.integer' => 'l expreince doit etre entie ',
+            'experiences.required'  => "L'expérience est obligatoire.",
+            'experiences.integer' => 'l expreince doit etre entie ',
         ];
     }
 

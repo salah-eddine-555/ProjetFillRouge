@@ -58,12 +58,12 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    public function eleves(){
-        return $this->hasMany(ProfileEleve::class);
+    public function eleve(){
+        return $this->hasOne(ProfileEleve::class);
     }
 
-    public function professeurs(){
-        return $this->hasMany(ProfileProf::class,);
+    public function prof(){
+        return $this->hasOne(ProfileProf::class,);
     }
 
 }

@@ -43,14 +43,14 @@ export default function Login(){
 
             }catch(error){
                 if(error.response){
-        console.log("STATUS:", error.response.status);
-        console.log("DATA:", error.response.data);
+                console.log("STATUS:", error.response.status);
+                console.log("DATA:", error.response.data);
 
-        if(error.response.data.errors){
-            console.log(error.response.data.errors);
-        } else {
-            console.log(error.response.data.message);
-        }
+                if(error.response.data.errors){
+                    console.log(error.response.data.errors);
+                } else {
+                    console.log(error.response.data.message);
+                }
 
     } else {
         console.log(error.message);
