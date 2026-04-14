@@ -4,11 +4,17 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\NiveauController;
 use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ClasseController;
 
 
 
 Route::post('/register', [AuthController::class , 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/classes', [ClasseController::class, 'index']);
+Route::get('/classes/{classe}', [ClasseController::class, 'show']);
+
+
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [AuthController::class , 'logout']);
@@ -29,6 +35,11 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::patch('/matieres/{matiere}', [MatiereController::class, 'update']);
         Route::delete('/matieres/{matiere}', [MatiereController::class, 'destroy']);
 
+        //Gestion des classes
+        Route::post('/classes', [ClasseController::class, 'store']);
+        Route::put('/classes/{classe}', [ClasseController::class, 'update']);
+        Route::delete('/classes/{classe}', [ClasseController::class, 'destroy']);
+
             
     });
 
@@ -43,5 +54,5 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::post('/profile/eleve', [ProfileController::class, 'storeProfileEleve']);
     });
 
-
+    
 });
