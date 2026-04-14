@@ -5,6 +5,7 @@ use App\Http\Controllers\NiveauController;
 use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClasseController;
+use App\Http\Controllers\AssingController;
 
 
 
@@ -39,6 +40,9 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::post('/classes', [ClasseController::class, 'store']);
         Route::put('/classes/{classe}', [ClasseController::class, 'update']);
         Route::delete('/classes/{classe}', [ClasseController::class, 'destroy']);
+
+        //Assign des eleves
+        Route::post('/assgine', [AssingController::class, 'AssingEelevsToClasse']);
 
             
     });

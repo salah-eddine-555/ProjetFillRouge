@@ -38,7 +38,7 @@ class MatiereController extends Controller
         $matiere = $this->service->modifier($matiere, $request->validated());
         return response()->json([
             'success' => true,
-            'message' => 'Matière modifiée avec succès.',
+            'message' => 'Matière modifiée avec supiccès.',
             'data'    => $matiere,
         ], 200);
     }

@@ -12,7 +12,7 @@ class AssingController extends Controller
 {
     protected AssignService $service;
 
-    public function __construct(){
+    public function __construct(AssignService $service){
         $this->service = $service;
     }
 

@@ -12,13 +12,12 @@ class AssignService {
         $classe = Classe::findOrFail($classe_id);
 
         ProfileEleve::whereIn('id', $eleves_ids)
-        ->update(['classe_id', $classe_id]);
+        ->update(['classe_id'=> $classe_id]);
 
-
-
-
-
-
+        return [
+            'message'=> 'l eleve est assigne avec success',
+            'classe' => $classe
+        ];
     }
 
 }
