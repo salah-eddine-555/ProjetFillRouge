@@ -1,81 +1,107 @@
 import { useSelector } from 'react-redux';
 import './style/profile.css';
+import { useNavigate } from 'react-router-dom';
 
-export default function Profile(){
-
+export default function Profile() {
     const user = useSelector((state) => state.auth.user);
-    
-    
-    
+    const navigate = useNavigate();
 
-    return(
-        <div className="profile-container">
-            <h1 className="profile-title">Mon Profil</h1>
-        
-            <div className="profile-card">
-                <div className="profile-item">
-                    <span>Prénom :</span>
-                    <p>{user?.firstname}</p>
-                </div>
+    if (!user) {
+        return <Navigate to="/login" />;
+    }
 
-                <div className="profile-item">
-                    <span>Nom :</span>
-                    <p>{user?.lastname}</p>
-                </div>
+    return (
+        <div className="profile-wrapper">
+            <div className="container py-5">
+                <div className="row justify-content-center">
+                    <div className="col-12 col-md-8 col-lg-6">
 
-                <div className="profile-item">
-                    <span>Email :</span>
-                    <p>{user?.email}</p>
-                </div>
+                        {/* Header card */}
+                        <div className="profile-header-card text-center mb-3">
+                            <h4 className="profile-name mb-1">{user?.firstname} {user?.lastname}</h4>
+                            <span className="role-badge">{user?.role}</span>
+                        </div>
 
-                <div className="profile-item">
-                    <span>Adresse :</span>
-                    <p>{user?.adresse}</p>
-                </div>
+                        {/* Info card */}
+                        <div className="profile-info-card mb-3">
 
-                <div className="profile-item">
-                    <span>Rôle :</span>
-                    <p className="role">{user?.role}</p>
-                </div>
-              
-                <div className="profile-item">
-                    <span>Profil :</span>
-                </div>
-                {user?.role === "professeur" && user?.profile &&(
+                            <p className="section-label">Informations personnelles</p>
 
-                        <>
-                            <div className="profile-item">
-                                <span>specialite :</span>
-                                <p>{user.profile.specialite}</p>
+                            <div className="info-row">
+                                <span className="info-key">Prénom</span>
+                                <span className="info-value">{user?.firstname}</span>
+                            </div>
+                            <div className="info-row">
+                                <span className="info-key">Nom</span>
+                                <span className="info-value">{user?.lastname}</span>
+                            </div>
+                            <div className="info-row">
+                                <span className="info-key">Email</span>
+                                <span className="info-value">{user?.email}</span>
+                            </div>
+                            <div className="info-row">
+                                <span className="info-key">Adresse</span>
+                                <span className="info-value">{user?.adresse}</span>
+                            </div>
+                            <div className="info-row">
+                                <span className="info-key">Rôle</span>
+                                <span className="info-value role-text">{user?.role}</span>
                             </div>
 
-                            <div className="profile-item">
-                                <span>experiences :</span>
-                                <p>{user.profile.experiences} ans</p>
-                            </div>
-                        </>
-                )}
-                {user?.role === 'eleve' && user?.profile && (
-                    <>
-                        <div className="profile-item">
-                            <span>sex</span>
-                            <p>{user.profile.sex}</p>
-                        </div>
-                         <div className="profile-item">
-                            <span>Number of parent</span>
-                            <p>{user.profile.number_parent}</p>
-                        </div>
-                    </>
-                )}
+                            {/* Profil Professeur */}
+                            {user?.role === 'professeur' && user?.profile && (
+                                <>
+                                    <p className="section-label mt-4">Profil professeur</p>
+                                    <div className="info-row">
+                                        <span className="info-key">Spécialité</span>
+                                        <span className="info-value">{user.profile.specialite}</span>
+                                    </div>
+                                    <div className="info-row">
+                                        <span className="info-key">Expérience</span>
+                                        <span className="info-value">{user.profile.experiences} ans</span>
+                                    </div>
+                                </>
+                            )}
 
-                {!user?.profile && (
-                    <div className="profile-item">
-                        <p>il n'existe pas d'informations de profil pour le moment</p>
+                            {/* Profil Élève */}
+                            {user?.role === 'eleve' && user?.profile && (
+                                <>
+                                    <p className="section-label mt-4">Profil élève</p>
+                                    <div className="info-row">
+                                        <span className="info-key">Sexe</span>
+                                        <span className="info-value">{user.profile.sex}</span>
+                                    </div>
+                                    <div className="info-row">
+                                        <span className="info-key">N° parent</span>
+                                        <span className="info-value">{user.profile.number_parent}</span>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+
+                        {/* Actions */}
+                        <div className="d-flex justify-content-end gap-2">
+                            {!user?.profile && (
+                                <button
+                                    className="btn-profile-action"
+                                    onClick={() => navigate('/profile/create')}
+                                >
+                                    + Ajouter profil
+                                </button>
+                            )}
+                            {user?.profile && (
+                                <button
+                                    className="btn-profile-action btn-profile-edit"
+                                    onClick={() => navigate('/profile/edit')}
+                                >
+                                    Modifier le profil
+                                </button>
+                            )}
+                        </div>
+
                     </div>
-                )}
-            
-              
+                </div>
             </div>
         </div>
-    )
+    );
 }

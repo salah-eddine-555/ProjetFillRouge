@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\ProfileProfFormRequest;
 use App\Http\Requests\ProfileEleveFormRequest;
+use App\Http\Requests\UpdateUserProfileRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Services\ServiceProfile;
 
@@ -25,7 +26,7 @@ class ProfileController extends Controller
         return response()->json([
             'success'=> true,
             'message' => 'le profile prof est ajoutee ',
-            'data' => $user->profileProf
+            'profile' => $user->prof
         ]);
     }
 
@@ -37,9 +38,20 @@ class ProfileController extends Controller
         return response()->json([
             'success'=> true,
             'message'=> 'le profile eleve est ajouetr avec success',
-            'data' => $user->profileEleve
+            'profile' => $user->eleve
         ]);
 
+    }
+
+      public function updateProfile(UpdateUserProfileRequest $request)
+    {
+        $user = $this->service->UpdateProfileUser($request->validated());
+
+        return response()->json([
+            'success' => true,
+            'message' => 'profile updated with success',
+            'data' => $user->load(['prof', 'eleve'])
+        ]);
     }
 
 }

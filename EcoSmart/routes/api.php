@@ -19,6 +19,7 @@ Route::get('/classes/{classe}', [ClasseController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [AuthController::class , 'logout']);
+    Route::put('/profile', [ProfileController::class, 'updateProfile']);
 
     //Routes pour les actions admin 
     Route::middleware('admin')->group(function(){

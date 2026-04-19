@@ -1,0 +1,146 @@
+/* ══════════════════════════════════════
+   UpdateProfileForm.css
+   Requires: Bootstrap 5
+   Font: DM Sans (Google Fonts)
+══════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap');
+
+/* ── Variables ── */
+:root {
+  --upf-green:      #2ecc71;
+  --upf-green-dark: #27ae60;
+  --upf-navy:       #1a2e4a;
+  --upf-bg:         #f0f4f8;
+  --upf-white:      #ffffff;
+  --upf-border:     #e2e8f0;
+  --upf-muted:      #94a3b8;
+  --upf-label:      #64748b;
+  --upf-input-bg:   #f8fafc;
+  --upf-radius:     14px;
+  --upf-shadow:     0 4px 28px rgba(26, 46, 74, .09);
+}
+
+/* ── Wrapper (page background) ── */
+.upf-wrapper {
+  min-height: 100vh;
+  background: var(--upf-bg);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ── Card ── */
+.upf-card {
+  background: var(--upf-white);
+  border-radius: var(--upf-radius);
+  box-shadow: var(--upf-shadow);
+  border: 1px solid var(--upf-border);
+  padding: 2.25rem 2.5rem;
+  width: 100%;
+  max-width: 620px;
+}
+
+/* ── Card header ── */
+.upf-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .65rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.upf-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--upf-navy), #2d4a70);
+  color: #fff;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 14px rgba(26, 46, 74, .2);
+}
+
+.upf-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.15rem;
+  color: var(--upf-navy);
+  margin: 0;
+}
+
+/* ── Section label ── */
+.upf-section-label {
+  font-size: .67rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  color: var(--upf-muted);
+  border-bottom: 1px solid var(--upf-border);
+  padding-bottom: .45rem;
+  margin-bottom: 1rem;
+}
+
+/* ── Form label ── */
+.upf-label {
+  font-size: .78rem;
+  font-weight: 500;
+  color: var(--upf-label);
+  margin-bottom: .3rem;
+}
+
+/* ── Input / Select ── */
+.upf-input {
+  background:    var(--upf-input-bg) !important;
+  border:        1.5px solid var(--upf-border) !important;
+  border-radius: 10px !important;
+  color:         var(--upf-navy) !important;
+  font-family:   'DM Sans', sans-serif;
+  font-size:     .875rem;
+  padding:       .56rem .9rem;
+  transition:    border-color .2s, box-shadow .2s;
+}
+
+.upf-input:focus {
+  border-color: var(--upf-green) !important;
+  box-shadow:   0 0 0 3px rgba(46, 204, 113, .14) !important;
+  background:   #fff !important;
+  outline:      none;
+}
+
+.upf-input::placeholder { color: #b0bec5; }
+
+/* ── Submit button ── */
+.upf-btn-submit {
+  background:  var(--upf-navy);
+  color:       #fff;
+  border:      none;
+  border-radius: 10px;
+  padding:     .6rem 1.8rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size:   .875rem;
+  font-weight: 600;
+  box-shadow:  0 4px 14px rgba(26, 46, 74, .2);
+  transition:  background .2s, transform .15s, box-shadow .2s;
+}
+
+.upf-btn-submit:hover {
+  background:  var(--upf-green-dark);
+  color:       #fff;
+  transform:   translateY(-1px);
+  box-shadow:  0 6px 18px rgba(39, 174, 96, .26);
+}
+
+.upf-btn-submit:active { transform: translateY(0); }
+
+/* ── Responsive ── */
+@media (max-width: 576px) {
+  .upf-card        { padding: 1.5rem 1.1rem; }
+  .upf-btn-submit  { width: 100%; }
+}

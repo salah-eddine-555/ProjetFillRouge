@@ -10,6 +10,8 @@ export default function Login(){
         "email": "",
         "password": ""
     })
+
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
     const dispatcher = useDispatch();
 
@@ -43,20 +45,17 @@ export default function Login(){
 
             }catch(error){
                 if(error.response){
-                console.log("STATUS:", error.response.status);
-                console.log("DATA:", error.response.data);
+                        if(error.response.data.errors){
+                            setErrors(error.response.data.errors);
+                        } else {  
+                            setErrors({ message: error.response.data.message });
+                        }
 
-                if(error.response.data.errors){
-                    console.log(error.response.data.errors);
                 } else {
-                    console.log(error.response.data.message);
+                    setErrors({ message: "Erreur cote serveur" });
                 }
-
-    } else {
-        console.log(error.message);
-    }
-            
-         }
+                
+          }
 
     }
 
@@ -66,16 +65,25 @@ export default function Login(){
         <h1 className="d-flex justify-content-center mt-5">Login</h1>
             <div className="conatiner mt-5 w-100 maring-left-auto d-flex justify-content-center">
                 
-
+                
                 <form action="" className="form-group w-50" onSubmit={onSubmit}>
+                    {errors.message && (
+                    <p style={{color: "red"}}>{errors.message}</p>
+                    )}
 
                     <label htmlFor="">Email : </label>
                     <input type="email" name="email" className="form-control mt-3" placeholder="Entre your email"
                     onChange={handleChange} />
+                     {errors.email && (
+                        <p style={{color: "red"}}>{errors.email}</p>
+                    )}
 
                     <label className="form-label mt-3">Password :</label>
                     <input type="password" name="password" className="form-control mt-3" placeholder="Enter your password" 
                     onChange={handleChange}/>
+                    {errors.password && (
+                        <p style={{color: "red"}}>{errors.password}</p>
+                    )}
                     <button className="btn btn-success  mt-3 w-50">login</button>
                 </form>
             </div>

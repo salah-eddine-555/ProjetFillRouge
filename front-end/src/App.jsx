@@ -10,6 +10,8 @@
   import Eleve from './pages/Eleve';
   import Home from './pages/Home';
   import Profile from './pages/Profile';
+  import CreateProfileForm from './pages/CreateProfileForm';
+  import UpdateProfileForm from './pages/UpdateProfileForm';
 
 
 
@@ -26,6 +28,8 @@
             <Route path="/professeur" element={<Professeur />}/>
             <Route path="/eleve" element={<Eleve />}/>
             <Route path="/profile" element={<Profile />}/>
+            <Route path="profile/create" element={<CreateProfileForm />}/>
+            <Route path="profile/edit" element={<UpdateProfileForm />}/>
         </Routes>
       </>
     )

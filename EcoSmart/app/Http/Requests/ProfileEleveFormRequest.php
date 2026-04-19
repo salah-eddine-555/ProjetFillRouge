@@ -24,7 +24,7 @@ class ProfileEleveFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-               'sex'=> 'required|string|in:H,F',
+            'sex'=> 'required|string|in:H,F',
             'number_parent' => 'sometimes|string',
         ];
     }

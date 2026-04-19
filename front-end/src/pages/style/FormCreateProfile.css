@@ -1,27 +1,14 @@
+/* ── Réutilisé depuis profile.css ── */
 .profile-wrapper {
     min-height: 100vh;
     background: #f4f6f9;
 }
 
-/* ── Header card ── */
 .profile-header-card {
     background: #ffffff;
     border-radius: 16px;
     padding: 32px 24px 24px;
     border: 1px solid #eaecf0;
-}
-
-.avatar-circle {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    background: #e8eaf6;
-    color: #1A237E;
-    font-size: 24px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .profile-name {
@@ -41,7 +28,6 @@
     text-transform: capitalize;
 }
 
-/* ── Info card ── */
 .profile-info-card {
     background: #ffffff;
     border-radius: 16px;
@@ -55,40 +41,68 @@
     color: #9ca3af;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
-.info-row {
+/* ── Spécifique au formulaire ── */
+.form-field {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 6px;
     padding: 11px 0;
     border-bottom: 1px solid #f3f4f6;
 }
 
-.info-row:last-child {
+.form-field:last-of-type {
     border-bottom: none;
 }
 
-.info-key {
+.field-label {
     font-size: 13px;
     font-weight: 600;
     color: #6b7280;
+    margin: 0;
 }
 
-.info-value {
+.field-input {
+    width: 100%;
+    padding: 9px 14px;
+    border: 1px solid #eaecf0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #1a1a2e;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.field-input:focus {
+    border-color: #1A237E;
+}
+
+.radio-group {
+    display: flex;
+    gap: 24px;
+    padding: 6px 0;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 14px;
     font-weight: 500;
     color: #1a1a2e;
+    cursor: pointer;
 }
 
-.role-text {
-    color: #1D9E75;
-    font-weight: 700;
-    text-transform: capitalize;
+.radio-option input[type="radio"] {
+    accent-color: #1A237E;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
 }
 
-/* ── Buttons ── */
+/* ── Bouton ── */
 .btn-profile-action {
     background: #1A237E;
     color: #ffffff;
@@ -104,24 +118,13 @@
     background: #283593;
 }
 
-.btn-profile-edit {
-    background: #ffffff;
-    color: #1A237E;
-    border: 1.5px solid #1A237E;
-}
-
-.btn-profile-edit:hover {
-    background: #f0f2ff;
-}
-
 /* ── Responsive ── */
 @media (max-width: 576px) {
-    .info-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-    }
     .profile-info-card {
         padding: 20px 16px;
+    }
+    .radio-group {
+        flex-direction: column;
+        gap: 12px;
     }
 }
