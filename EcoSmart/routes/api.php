@@ -5,6 +5,7 @@ use App\Http\Controllers\NiveauController;
 use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClasseController;
+use App\Http\Controllers\StatistiqueAdminController;
 use App\Http\Controllers\AssingController;
 
 
@@ -23,6 +24,9 @@ Route::middleware('auth:sanctum')->group(function(){
 
     //Routes pour les actions admin 
         Route::middleware('admin')->group(function(){
+            //statistiques pour admin
+            Route::get('/statistiques', [StatistiqueAdminController::class, 'statistiques']);
+            Route::get('/users', [StatistiqueAdminController::class, 'getUsers']);
             // Gestion des niveaux
                 Route::get('/niveaux',[NiveauController::class, 'index']);
                 Route::post('/niveaux', [NiveauController::class, 'store']);

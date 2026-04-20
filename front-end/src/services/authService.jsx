@@ -1,13 +1,5 @@
-import axios from 'axios';
+import API from './Api';
 
-
-const API = axios.create({
-    baseURL: "http://localhost:8000/api",
-    headers: {
-        "Content-Type": "application/json",
-        "Accept": "Application/json"
-    }
-})
 
 export const resgiter = ($data) => API.post("/register", $data);
 
