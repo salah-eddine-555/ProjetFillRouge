@@ -22,31 +22,31 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::put('/profile', [ProfileController::class, 'updateProfile']);
 
     //Routes pour les actions admin 
-    Route::middleware('admin')->group(function(){
-        // Gestion des niveaux
-            Route::get('/niveaux',[NiveauController::class, 'index']);
-            Route::post('/niveaux', [NiveauController::class, 'store']);
-            Route::put('/niveaux/{niveau}',[NiveauController::class, 'update']); 
-            Route::delete('/niveaux/{niveau}',[NiveauController::class, 'destroy']); 
-        
-        // Gestion des matieres
-
-        Route::get('/matieres', [MatiereController::class, 'index']);
-        Route::post('/matieres', [MatiereController::class, 'store']);
-        Route::put('/matieres/{matiere}', [MatiereController::class, 'update']);
-        Route::patch('/matieres/{matiere}', [MatiereController::class, 'update']);
-        Route::delete('/matieres/{matiere}', [MatiereController::class, 'destroy']);
-
-        //Gestion des classes
-        Route::post('/classes', [ClasseController::class, 'store']);
-        Route::put('/classes/{classe}', [ClasseController::class, 'update']);
-        Route::delete('/classes/{classe}', [ClasseController::class, 'destroy']);
-
-        //Assign des eleves
-        Route::post('/assgine', [AssingController::class, 'AssingEelevsToClasse']);
-
+        Route::middleware('admin')->group(function(){
+            // Gestion des niveaux
+                Route::get('/niveaux',[NiveauController::class, 'index']);
+                Route::post('/niveaux', [NiveauController::class, 'store']);
+                Route::put('/niveaux/{niveau}',[NiveauController::class, 'update']); 
+                Route::delete('/niveaux/{niveau}',[NiveauController::class, 'destroy']); 
             
-    });
+            // Gestion des matieres
+
+            Route::get('/matieres', [MatiereController::class, 'index']);
+            Route::post('/matieres', [MatiereController::class, 'store']);
+            Route::put('/matieres/{matiere}', [MatiereController::class, 'update']);
+            Route::patch('/matieres/{matiere}', [MatiereController::class, 'update']);
+            Route::delete('/matieres/{matiere}', [MatiereController::class, 'destroy']);
+            
+            //Gestion des classes
+            Route::post('/classes', [ClasseController::class, 'store']);
+            Route::put('/classes/{classe}', [ClasseController::class, 'update']);
+            Route::delete('/classes/{classe}', [ClasseController::class, 'destroy']);
+
+            //Assign des eleves
+            Route::post('/assgine', [AssingController::class, 'AssingEelevsToClasse']);
+
+                
+        });
 
     //Routes pour les actions professeur
     Route::middleware('prof')->group(function(){

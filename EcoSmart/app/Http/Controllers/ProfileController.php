@@ -50,8 +50,20 @@ class ProfileController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'profile updated with success',
-            'data' => $user->load(['prof', 'eleve'])
+            'data'=> [
+                'firstname'=> $user->firstname,
+                'lastname'=> $user->lastname,
+                'email'=> $user->email,
+                'adresse'=> $user->adresse,
+                'role'=>$user->role->name,
+                'profile'=> match($user->role->name){
+                    'eleve'=> $user->eleve,
+                    'professeur' => $user->prof,
+                    default => null,
+                }
+            ],
+               
         ]);
+        
     }
-
 }

@@ -12,6 +12,7 @@
   import Profile from './pages/Profile';
   import CreateProfileForm from './pages/CreateProfileForm';
   import UpdateProfileForm from './pages/UpdateProfileForm';
+  import DashboardAdmin from './pages/admin/DashboardAdmin';
 
 
 
@@ -27,6 +28,7 @@
             <Route path="/logout" element={<Logout />}/>
             <Route path="/professeur" element={<Professeur />}/>
             <Route path="/eleve" element={<Eleve />}/>
+            <Route path="/admin" element={<DashboardAdmin />}/>
             <Route path="/profile" element={<Profile />}/>
             <Route path="profile/create" element={<CreateProfileForm />}/>
             <Route path="profile/edit" element={<UpdateProfileForm />}/>

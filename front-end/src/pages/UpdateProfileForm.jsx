@@ -1,21 +1,46 @@
 import "./style/UpdateProfileForm.css";
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import {updateProfile} from "../services/profileService";
+import { useNavigate } from "react-router-dom";
+import { setUser } from "../Redux/authSlice";
+
+
 
 export default function UpdateProfileForm() {
 
     const [formData, setFormData] = useState({
-        "firstname": "",
-        "lastname": "",
-        "adresse": "",
-        "email": "",
-        "specialite": "",
-        "expereinces": "",
-        "sex": "",
-        "number_parent": ""
+       firstname: "",
+       lastname: "",
+       email: "",
+       adresse: "",
+       specialite: "",
+       experiences: "",
+       sex: "",
+       number_parent: ""
     })
+    const [errors, setErrors] = useState({});
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const user = useSelector((state)=> state.auth.user);
-    console.log(user.profile)
+
+    useEffect(() => {
+      if(user) {
+        setFormData({
+          firstname: user.firstname || "",
+          lastname: user.lastname || "",
+          adresse: user.adresse || "",
+          email: user.email || "",
+          specialite: user.profile?.specialite || "",
+          experiences: Number(user.profile?.experiences) || "",
+          sexe: user.profile?.sexe || "",
+          number_parent: String(user.profile?.number_parent) || "",
+        });
+      }
+    },[user])
+   
+
+
     // console.log(user.profile.specialite);
 
     const handleChange = (e) => {
@@ -25,12 +50,32 @@ export default function UpdateProfileForm() {
         })
     }
 
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      try{
+          const res = await updateProfile(formData);
+          dispatch(setUser(res.data.data));
+           console.log(res.data.data);
+
+          navigate('/profile');
+          
+         
+
+      }catch(error){
+         
+          // console.log("STATUS:", error.response.status);
+          console.log("MESSAGE:", error.response.data.message);
+          console.log("VALIDATION ERRORS:", error.response.data.errors);
+      }
+    }
+
   return (
     <div className="upf-wrapper">
       <div className="upf-card">
 
 
-        <form>
+        <form onSubmit={handleSubmit}>
 
           <p className="upf-section-label">Informations personnelles</p>
 
@@ -42,7 +87,7 @@ export default function UpdateProfileForm() {
                 type="text"
                 id="firstname"
                 name="firstname"
-                value={user.firstname}
+                value={formData.firstname}
                 onChange={handleChange}
                 className="form-control upf-input"
                 placeholder="Votre prénom"
@@ -55,7 +100,7 @@ export default function UpdateProfileForm() {
                 type="text"
                 id="lastname"
                 name="lastname"
-                value={user.lastname}
+                value={formData.lastname}
                 onChange={handleChange}
                 className="form-control upf-input"
                 placeholder="Votre nom"
@@ -70,7 +115,7 @@ export default function UpdateProfileForm() {
               type="email"
               id="email"
               name="email"
-              value={user.email}
+              value={formData.email}
               onChange={handleChange}
               className="form-control upf-input"
               placeholder="exemple@email.com"
@@ -83,7 +128,7 @@ export default function UpdateProfileForm() {
               type="text"
               id="adresse"
               name="adresse"
-              value={user.adresse}
+              value={formData.adresse}
               onChange={handleChange}
               className="form-control upf-input"
               placeholder="Votre adresse"
@@ -103,7 +148,7 @@ export default function UpdateProfileForm() {
                     type="text"
                     id="specialite"
                     name="specialite"
-                    value={user.profile?.specialite}
+                    value={formData.specialite}
                     onChange={handleChange}
                     className="form-control upf-input"
                     placeholder="Ex : Mathématiques"
@@ -116,7 +161,7 @@ export default function UpdateProfileForm() {
                     type="number"
                     id="experiences"
                     name="experiences"
-                    value={user.profile?.experiences}
+                    value={formData.experiences}
                     onChange={handleChange}
                     className="form-control upf-input"
                     placeholder="Ex : 5"
@@ -137,8 +182,10 @@ export default function UpdateProfileForm() {
 
                 <div className="col-md-6">
                   <label htmlFor="sex" className="upf-label form-label">Sexe</label>
-                  <select id="sex" name="sex" className="form-select upf-input">
-                    <option value={user.profile.sex} onChange={handleChange}>-- Sélectionner --</option>
+                  <select id="sex" name="sex" className="form-select upf-input"
+                  value={formData.sexe} onChange={handleChange}
+                  >
+                    <option value="">-- Sélectionner --</option>
                     <option value="H">Homme</option>
                     <option value="F">Femme</option>
                   </select>
@@ -150,7 +197,7 @@ export default function UpdateProfileForm() {
                     type="tel"
                     id="number_parent"
                     name="number_parent"
-                    value={user.profile.number_parent}
+                    value={formData.number_parent}
                     onChange={handleChange}
                     className="form-control upf-input"
                     placeholder="+212 6 00 00 00 00"
