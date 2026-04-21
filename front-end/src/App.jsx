@@ -14,6 +14,8 @@
   import UpdateProfileForm from './pages/UpdateProfileForm';
   import DashboardAdmin from './pages/admin/DashboardAdmin';
 
+  import MangeNiveauxMatieres from './pages/admin/ManageNiveauxMatieres';
+
 
 
   function App() {
@@ -32,9 +34,13 @@
             <Route path="/profile" element={<Profile />}/>
             <Route path="profile/create" element={<CreateProfileForm />}/>
             <Route path="profile/edit" element={<UpdateProfileForm />}/>
+            <Route path="admin/niveaux" element={<MangeNiveauxMatieres />}/>
+          
         </Routes>
       </>
     )
   }
 
-  export default App;
+
+  
+export default App;

@@ -38,7 +38,6 @@ Route::middleware('auth:sanctum')->group(function(){
             Route::get('/matieres', [MatiereController::class, 'index']);
             Route::post('/matieres', [MatiereController::class, 'store']);
             Route::put('/matieres/{matiere}', [MatiereController::class, 'update']);
-            Route::patch('/matieres/{matiere}', [MatiereController::class, 'update']);
             Route::delete('/matieres/{matiere}', [MatiereController::class, 'destroy']);
             
             //Gestion des classes

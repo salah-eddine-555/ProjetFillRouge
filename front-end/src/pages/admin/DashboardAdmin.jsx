@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './style/dashboard.css';
 import { getStatistiques, getUsers } from '../../services/AdminService';
 import { useEffect } from 'react';
+import Sidebar from '../../components/Sidebar';
     
 
     export default function DashboardAdmin() {
@@ -12,17 +13,32 @@ import { useEffect } from 'react';
         total_professeurs: 0,
         total_matieres: 0
       });
-      const [users, SetUsers] = useState({});
+      const [users, setUsers] = useState([]);
+      const [filter, setFilter] = useState("tous");
 
       useEffect(() => {
           const fetchData = async () => {
             try{ 
                 const res = await getStatistiques();
                 const user = await getUsers();
-               
-                console.log(res.data);
+                console.log(user.data);
+                // console.log(user.data.eleves);
+                const formUser = [
+                  ...user.data.professeurs.map((u) => ({
+                    ...u,
+                    role: 'professeur'
+                  })),
+                  ...user.data.eleves.map((u) => ({
+                    ...u,
+                    role: "eleve"
+                  }))
+
+                ]
+
                 setData(res.data);
-                SetUsers(user.data);
+               
+                setUsers(formUser);
+               
             }catch(error){
               console.log(error);
             }  
@@ -30,140 +46,127 @@ import { useEffect } from 'react';
         fetchData();
       },[])
 
+       const filterUsers = users.filter((user) => {
+        if(filter === 'tous') return true;
+
+        return user.role === filter;
+      })
+
+      
+
 
         return (
             
            <div className="container-fluid">
-  <div className="row">
+                <div className="row">
+                    <Sidebar />
+                
+                  <main className="col-md-9 col-lg-10 px-4 py-4 bg-light" style={{
+                    marginLeft: "250px",
+                    padding: "20px",
+                    minHeight: "100vh"
+                  }}>
 
- 
-    <nav className="col-md-3 col-lg-2 d-md-block bg-white shadow-sm vh-100 p-3">
-      <h5 className="text-success fw-bold mb-4">EcoSmart</h5>
-
-      <ul className="nav flex-column small">
-
-        <li className="cnav-item mb-2">
-          <a className="nav-link active bg-success text-white rounded px-3" href="#">
-            Tableau de bord
-          </a>
-        </li>
-
-        <li className="nav-item mb-2">
-          <a className="nav-link text-dark px-3" href="#">
-            Gestion des Niveaux
-          </a>
-        </li>
-
-        <li className="nav-item mb-2">
-          <a className="nav-link text-dark px-3" href="#">
-            Gestion des classNamees
-          </a>
-        </li>
-
-        <li className="nav-item mb-2">
-          <a className="nav-link text-dark px-3" href="#">
-            Gestion des Élèves
-          </a>
-        </li>
-
-      </ul>
-
-      <div className="mt-4">
-        <button className="btn btn-success w-100">+ Nouveau Rapport</button>
-      </div>
-    </nav>
+                    <div className="bg-success text-white p-4 rounded mb-4">
+                      <h5 className="mb-1">Tableau de bord Administrateur</h5>
+                      <small>Bienvenue, suivez vos statistiques en temps réel</small>
+                    </div>
 
 
-    <main className="col-md-9 col-lg-10 px-4 py-4 bg-light">
+                    <div className="row g-3 mb-4">
 
-      <div className="bg-success text-white p-4 rounded mb-4">
-        <h5 className="mb-1">Tableau de bord Administrateur</h5>
-        <small>Bienvenue, suivez vos statistiques en temps réel</small>
-      </div>
+                      <div className="col-md-3">
+                        <div className="card p-3 shadow-sm border-0">
+                          <small className="text-muted">Total Étudiants</small>
+                          <h4 className="fw-bold">{data.total_eleves}</h4>
+                        </div>
+                      </div>
 
+                      <div className="col-md-3">
+                        <div className="card p-3 shadow-sm border-0">
+                          <small className="text-muted">classes Actives</small>
+                          <h4 className="fw-bold">{data.total_classes}</h4>
+                        </div>
+                      </div>
 
-      <div className="row g-3 mb-4">
+                      <div className="col-md-3">
+                        <div className="card p-3 shadow-sm border-0">
+                          <small className="text-muted">Total Professeurs</small>
+                          <h4 className="fw-bold">{data.total_professeurs}</h4>
+                        </div>
+                      </div>
 
-        <div className="col-md-3">
-          <div className="card p-3 shadow-sm border-0">
-            <small className="text-muted">Total Étudiants</small>
-            <h4 className="fw-bold">{data.total_eleves}</h4>
-          </div>
-        </div>
+                      <div className="col-md-3">
+                        <div className="card p-3 shadow-sm border-0">
+                          <small className="text-muted">Total Matieres</small>
+                          <h4 className="fw-bold">{data.total_matieres}</h4>
+                        </div>
+                      </div>
 
-        <div className="col-md-3">
-          <div className="card p-3 shadow-sm border-0">
-            <small className="text-muted">classes Actives</small>
-            <h4 className="fw-bold">{data.total_classes}</h4>
-          </div>
-        </div>
-
-        <div className="col-md-3">
-          <div className="card p-3 shadow-sm border-0">
-            <small className="text-muted">Total Professeurs</small>
-            <h4 className="fw-bold">{data.total_professeurs}</h4>
-          </div>
-        </div>
-
-        <div className="col-md-3">
-          <div className="card p-3 shadow-sm border-0">
-            <small className="text-muted">Total Matieres</small>
-            <h4 className="fw-bold">{data.total_matieres}</h4>
-          </div>
-        </div>
-
-      </div>
+                  </div>
 
                   <div className="card shadow-sm border-0 p-3">
                     <div className="d-flex justify-content-between align-items-center mb-3">
-                      <h6 className="mb-0">Aperçu des Niveaux</h6>
+                      <h6 className="mb-0">list de utilisateurs</h6>
                       <div>
-                        <button className="btn btn-light btn-sm me-2">Filtrer</button>
-                        <button className="btn btn-success btn-sm">+ Ajouter un Niveau</button>
+                        <select className="form-select form-select-sm w-auto me-2"
+                        value={filter}
+                        onChange={(e) => setFilter(e.target.value)}
+                        >
+                            <option value="tous" >Tous</option>
+                            <option value="professeur">Professeurs</option>
+                            <option value="eleve">Eleves</option>
+                        </select>
                       </div>
                     </div>
 
-                    <table className="table align-middle">
-                      <thead className="table-light">
-                        <tr>
-                          <th>Niveau</th>
-                          <th>Cycle</th>
-                          <th>Nombre d'Élèves</th>
-                          <th>Responsable</th>
-                          <th>Statut</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
+                    <div className="custom-table-card">
 
-                      <tbody>
-                        <tr>
-                          <td>3ème Année</td>
-                          <td>Secondaire</td>
-                          <td>245</td>
-                          <td>Jean Dupont</td>
-                          <td><span className="badge bg-success">Actif</span></td>
-                          <td>✏️ 🗑️</td>
-                        </tr>
+                            <table className="custom-table">
+                              <thead>
+                                <tr>
+                                  <th>Firstname</th>
+                                  <th>Lastname</th>
+                                  <th>Adresse</th>
+                                  <th>Email</th>
+                                  <th>Role</th>
+                                  <th>Statut</th>
+                                </tr>
+                              </thead>
 
-                        <tr>
-                          <td>5ème Année</td>
-                          <td>Primaire</td>
-                          <td>180</td>
-                          <td>Marie Laurent</td>
-                          <td><span className="badge bg-warning text-dark">Maintenance</span></td>
-                          <td>✏️ 🗑️</td>
-                        </tr>
+                              <tbody>
+                                {filterUsers.map((user) => (
+                                  <tr key={user.id}>
+                                    <td>{user.firstname}</td>
+                                    <td>{user.lastname}</td>
+                                    <td>{user.adresse}</td>
+                                    <td>{user.email}</td>
+                                
+                                    <td>
+                                      <span className={`badge-role ${
+                                        user.role === "professeur"
+                                          ? "role-professeur"
+                                          : "role-eleve"
+                                      }`}>
+                                        {user.role}
+                                      </span>
+                                    </td>
+                                    
+                                    <td>
+                                      <span className={`badge-status ${
+                                        user.is_active
+                                          ? "badge-active"
+                                          : "badge-inactive"
+                                      }`}>
+                                        {user.is_active ? "Active" : "Inactive"}
+                                      </span>
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
 
-                        <tr>
-                          <td>1ère Année</td>
-                          <td>Primaire</td>
-                          <td>120</td>
-                          <td>Sophie Petit</td>
-                          <td><span className="badge bg-success">Actif</span></td>
-                          <td>✏️ 🗑️</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    </div>
 
                   </div>
 
@@ -172,4 +175,4 @@ import { useEffect } from 'react';
               </div>
             </div>
         )
-    }
+}

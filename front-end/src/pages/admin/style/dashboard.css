@@ -1,111 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
 
-:root {
-  --ecosmart-emerald: #059669;
-  --ecosmart-emerald-dark: #047857;
-  --ecosmart-bg: #f8fafc;
-  --sidebar-width: 280px;
-}
+
 
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--ecosmart-bg);
 }
 
-.ecosmart-dashboard {
-  min-height: 100vh;
+/* ===== TABLE CONTAINER ===== */
+.custom-table-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-/* Sidebar Styling */
-.ecosmart-sidebar {
-  width: var(--sidebar-width);
-  background-color: #ffffff;
-  border-right: 1px solid #e2e8f0;
-  display: flex;
-  flex-direction: column;
-  position: sticky;
-  top: 0;
-  height: 100vh;
+/* ===== TABLE STYLE ===== */
+.custom-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px; /* spacing between rows */
 }
 
-.brand-logo {
-  color: var(--ecosmart-emerald);
-  font-weight: 800;
-  letter-spacing: -1px;
-}
-
-.ecosmart-sidebar .nav-link {
-  color: #64748b;
-  padding: 12px 16px;
-  border-radius: 8px;
+/* HEADER */
+.custom-table thead th {
+  background: #f8f9fa;
+  color: #495057;
   font-weight: 600;
-  transition: all 0.2s ease;
-  margin-bottom: 4px;
+  font-size: 14px;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 2px solid #e9ecef;
 }
 
-.ecosmart-sidebar .nav-link:hover {
-  background-color: #f1f5f9;
-  color: var(--ecosmart-emerald);
+/* ROWS */
+.custom-table tbody tr {
+  background: #fff;
+  transition: 0.2s;
+  border-radius: 10px;
 }
 
-.ecosmart-sidebar .nav-link.active {
-  background-color: #ecfdf5;
-  color: var(--ecosmart-emerald);
+.custom-table tbody tr:hover {
+  background: #f1f7ff;
+  transform: scale(1.01);
 }
 
-/* Stats Cards */
-.stat-card {
-  transition: transform 0.2s ease;
+/* CELLS */
+.custom-table td {
+  padding: 12px;
+  font-size: 14px;
+  color: #333;
+  vertical-align: middle;
 }
 
-.stat-card:hover {
-  transform: translateY(-5px);
+/* BADGES */
+.badge-status {
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
 }
 
-/* Profile Avatar */
-.avatar {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  font-weight: bold;
+.badge-active {
+  background: #d1f7d6;
+  color: #1e7e34;
 }
 
-/* Utility Colors */
-.bg-emerald {
-  background-color: var(--ecosmart-emerald) !important;
+.badge-inactive {
+  background: #f8d7da;
+  color: #721c24;
 }
 
-.text-emerald {
-  color: var(--ecosmart-emerald) !important;
+/* ROLE BADGE */
+.badge-role {
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
 }
 
-.btn-emerald {
-  background-color: var(--ecosmart-emerald);
-  border-color: var(--ecosmart-emerald);
-  transition: all 0.2s ease;
+.role-professeur {
+  background: #cfe2ff;
+  color: #0d6efd;
 }
 
-.btn-emerald:hover {
-  background-color: var(--ecosmart-emerald-dark);
-  border-color: var(--ecosmart-emerald-dark);
-  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
-}
-
-/* Table Styling */
-.table th {
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  color: #64748b;
-}
-
-@media (max-width: 768px) {
-  .ecosmart-sidebar {
-    display: none;
-  }
+.role-eleve {
+  background: #d1e7dd;
+  color: #198754;
 }
