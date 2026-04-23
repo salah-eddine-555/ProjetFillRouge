@@ -18,6 +18,8 @@ Route::get('/classes/{classe}', [ClasseController::class, 'show']);
 
 
 
+
+
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [AuthController::class , 'logout']);
     Route::put('/profile', [ProfileController::class, 'updateProfile']);
@@ -28,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function(){
             Route::get('/statistiques', [StatistiqueAdminController::class, 'statistiques']);
             Route::get('/users', [StatistiqueAdminController::class, 'getUsers']);
             // Gestion des niveaux
+            
                 Route::get('/niveaux',[NiveauController::class, 'index']);
                 Route::post('/niveaux', [NiveauController::class, 'store']);
                 Route::put('/niveaux/{niveau}',[NiveauController::class, 'update']); 

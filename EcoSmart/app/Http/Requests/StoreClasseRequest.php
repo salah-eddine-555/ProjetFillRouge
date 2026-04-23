@@ -24,7 +24,7 @@ class StoreClasseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|unique:classes,name|max:255',
             'niveau_id' => 'required|exists:niveaux,id',
             'prof_id' => 'nullable|exists:profile_professeurs,id',
         ];
@@ -34,6 +34,7 @@ class StoreClasseRequest extends FormRequest
         return [
             'name.required'=> 'le nom de classes est oblegatoire ',
             'name.string' => 'le nom de classe de etre de type string',
+            'name.unique' => 'ce nom de classes est deja existe ',
 
             'niveau_id.exists' => 'le niveau a choisit est introuvable',
             'niveau_id.required'=> 'il faut selectionee le niveau de classe est obleatoire',

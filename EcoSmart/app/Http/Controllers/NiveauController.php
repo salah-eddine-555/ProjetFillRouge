@@ -47,12 +47,20 @@ class NiveauController extends Controller
         ]);
     }
 
-    public function destroy(Niveau $niveau){
-        $this->service->supprimer($niveau);
+        public function destroy(Niveau $niveau){
 
-        return response()->json([
-            'success'=> true,
-            'message'=> 'ce niveau est supprimee avec succees',
-        ]);
-    }
+            try{
+                $this->service->supprimer($niveau);
+            }catch(\Exception  $e){
+                return response()->json([
+                    'success'=> false,
+                    'message' => $e->getMessage(),
+                ], 400);
+            }
+
+            return response()->json([
+                'success'=> true,
+                'message'=> 'ce niveau est supprimee avec succees',
+            ]);
+        }
 }
