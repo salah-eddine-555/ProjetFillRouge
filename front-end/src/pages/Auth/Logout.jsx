@@ -15,7 +15,7 @@
             dispatcher(logout())
 
             navigate('/');
-        })
+        }, []);
 
         return null;
     }

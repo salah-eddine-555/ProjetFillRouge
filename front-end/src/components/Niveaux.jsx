@@ -3,10 +3,14 @@ import { getNivaux, addNiveaux, updateNiveaux, deteleNiveaux } from "../services
 
 
 export default function Niveaux() {
+  const [mode, setMode] = useState('create');
+
     const [showModal, setShowModal] = useState(false);
     const [niveaux, setNiveaux] = useState([]);
     const [newNiveau, setNewNiveau] = useState("");
+    const [selectedId, setSelectedId] = useState(null);
     const [errors, setErrors] = useState({});
+    const [messages, setMessages] = useState("")
 
      const fetchNiveaux = async () => {
             try{
@@ -26,32 +30,53 @@ export default function Niveaux() {
 
     }),[])
 
-    const handleAddNiveau = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        try{
-            await addNiveaux({ name: newNiveau });
-            setNewNiveau("");
-            setShowModal(false);
-
-            fetchNiveaux();
-
-        }catch(error){
-            console.log(error.response?.data);
-            setErrors(error.response.data.errors);
+        setErrors({});
+      
+      try{
+        if(mode === 'create'){
+          await addNiveaux({name: newNiveau});
+        } else {
+          await updateNiveaux(selectedId, {name: newNiveau});
         }
+
+        setNewNiveau("");
+        setShowModal(false);
+        setSelectedId(null);
+        fetchNiveaux();
+      }catch(error){
+        setErrors(error.response?.data.errors);
+      }
+       
+       
+    }
+    const handleEdit = (niveau) => {
+      setMode('edit');
+      setSelectedId(niveau.id);
+      setNewNiveau(niveau.name)
+      setErrors({})
+      setShowModal(true);
     }
 
-    const handleEdit = (id) => {
-        console.log("id de niveaux a modifier  est : ", id);
-    }
+    const handleDelete = async (id) => {
+  
+      try {
+        
+        const res = await deteleNiveaux(id);
 
-    const handleDelete = (id) => {
-        console.log('le niveau que vous voules supprimer est ', id);
+
+
+        console.log(res.data.message);
+        
+        fetchNiveaux();
+
+    } catch (error) {
+      //  console.log(error.response.data.message);
+      setMessages(error.response.data.message)
     }
  
-    
-    // console.log(niveaux[0].name);
+  } 
 
   return (
     <div className="w-100">
@@ -69,13 +94,17 @@ export default function Niveaux() {
 
       </div>
       
+      {messages && (
+        <div className="alert alert-danger">{messages}</div>
+      )}
+      
 
-      {/* 🔵 Card */}
+   
       <div className="card shadow-sm border-0">
 
         <div className="card-body">
 
-          {/* 🔵 Table responsive */}
+      
           <div className="table-responsive">
 
             <table className="table table-hover align-middle">
@@ -92,10 +121,11 @@ export default function Niveaux() {
               {/* Body table */}
              <tbody>
                {niveaux.map((niveau) => (
-                    <tr>
+                    <tr key={niveau.id}>
                         <td>{niveau.name}</td>
                         <td className="text-end">
-                            <button className="btn btn-sm btn-outline-primary me-2" onClick={() => handleEdit(niveau.id)}>
+                            <button className="btn btn-sm btn-outline-primary me-2" 
+                             onClick={() =>  handleEdit(niveau)} >
                               Modifier
                             </button>
 
@@ -156,9 +186,9 @@ export default function Niveaux() {
 
                         <button
                           className="btn btn-success"
-                          onClick={handleAddNiveau}
+                          onClick={handleSubmit}
                         >
-                          Ajouter
+                          {mode === 'create' ? "Ajouter" : "Modifier"}
                         </button>
                       </div>
 
@@ -171,4 +201,5 @@ export default function Niveaux() {
 
     
   );
+
 }

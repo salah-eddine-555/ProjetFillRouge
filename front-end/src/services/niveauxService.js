@@ -12,6 +12,7 @@ export const getNivaux = async () => {
     }
 }
 
+
 export const addNiveaux = (data) => API.post("/niveaux", data);
 
 export const updateNiveaux = (id, data) => API.put(`/niveaux/${id}`, data);

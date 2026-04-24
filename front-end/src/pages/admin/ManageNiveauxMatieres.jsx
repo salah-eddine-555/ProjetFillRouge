@@ -7,7 +7,7 @@ import Niveaux from "../../components/Niveaux";
 // import Niveaux from "./Niveaux";
 // import Matieres from "./Matieres";
 
-export default function GestionAcademique() {
+export default function ManageNiveauxMatieres() {
 
  
   const [activeTab, setActiveTab] = useState("niveaux");
