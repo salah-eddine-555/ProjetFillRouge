@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\AssignService;
 use App\Models\Classe;
+use App\Models\ProfileEleve;
 
 use App\Http\Requests\AssignElevesToClasseRequest;
 
@@ -25,5 +26,15 @@ class AssingController extends Controller
             'message'=> $result['message'],
             'data' => $result,
         ], 200);
+    }
+
+    public function getElevesNonAssigne(){
+
+        $eleves = ProfileEleve::whereNull('classe_id')->with('user')->get();
+
+        return response()->json([
+            'success'=> true,
+            'data' => $eleves
+        ]);
     }
 }

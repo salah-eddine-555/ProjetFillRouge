@@ -50,6 +50,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
             //Assign des eleves
             Route::post('/assgine', [AssingController::class, 'AssingEelevsToClasse']);
+            Route::get('/Nonassgine', [AssingController::class, 'getElevesNonAssigne']);
 
                 
         });
