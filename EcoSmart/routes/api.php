@@ -49,9 +49,10 @@ Route::middleware('auth:sanctum')->group(function(){
             Route::delete('/classes/{classe}', [ClasseController::class, 'destroy']);
 
             //Assign des eleves
-            Route::post('/assgine', [AssingController::class, 'AssingEelevsToClasse']);
+            Route::post('/assgine/eleves', [AssingController::class, 'AssingEelevsToClasse']);
             Route::get('/Nonassgine', [AssingController::class, 'getElevesNonAssigne']);
-
+            Route::get('/assgine/prof', [AssingController::class, 'assigneProfToClasse']);
+            Route::get('/professeurs', [AssingController::class, 'getProfesseurs']);
                 
         });
 

@@ -19,7 +19,7 @@ class ClassService {
          return $classe;
     }
     public function getById($id){
-        $classe = Classe::with('eleves', 'prof', 'niveau')->findOrFail($id);
+       $classe = Classe::with('eleves.user', 'prof', 'niveau')->findOrFail($id);
         return $classe;
     }
     public function delete($classe){
