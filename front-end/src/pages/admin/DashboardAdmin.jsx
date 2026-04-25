@@ -172,13 +172,14 @@ import {UpdateStatut} from '../../services/UserService';
                                     
                                     <td>
                                      <button
-                                        className={`badge-status ${
-                                          user.is_active ? "badge-active" : "badge-inactive"
-                                        }`}
-                                        onClick={() => changerStatut(user.id)}
-                                      >
-                                        {user.is_active ? "Active" : "Inactive"}
-                                      </button>
+  onClick={() => changerStatut(user.id)}
+  className={`status-btn ${
+    user.is_active ? "active" : "inactive"
+  }`}
+>
+  <span className="dot"></span>
+  {user.is_active ? "Active" : "Inactive"}
+</button>
                                     </td>
                                   </tr>
                                 ))}

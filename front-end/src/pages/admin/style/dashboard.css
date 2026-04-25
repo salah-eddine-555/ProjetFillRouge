@@ -85,3 +85,59 @@ body {
   background: #d1e7dd;
   color: #198754;
 }
+
+
+
+
+
+
+
+/* button activer desactive style */
+.status-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Active state */
+.status-btn.active {
+  background: #e6f9ee;
+  color: #1f9d55;
+}
+
+/* Inactive state */
+.status-btn.inactive {
+  background: #fde8e8;
+  color: #e02424;
+}
+
+/* Dot indicator */
+.status-btn .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* dot colors */
+.status-btn.active .dot {
+  background: #1f9d55;
+}
+
+.status-btn.inactive .dot {
+  background: #e02424;
+}
+
+/* hover effect */
+.status-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
