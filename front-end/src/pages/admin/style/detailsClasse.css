@@ -68,3 +68,90 @@
 .table {
   margin: 0;
 }
+
+
+
+
+/* style de modal */
+
+
+/* BACKDROP */
+.modal {
+  z-index: 1055;
+}
+
+.modal-backdrop {
+  z-index: 1050;
+}
+
+/* MODAL SIZE */
+.custom-modal {
+  max-width: 460px;
+  width: 92%;
+}
+
+/* FIX HEIGHT MODAL */
+.modal-fixed-height {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* SCROLL INTERNE UNIQUEMENT */
+.modal-scroll {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ITEM COMPACT */
+.compact-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 8px;
+  margin-bottom: 6px;
+  background: #fff;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.compact-item:hover {
+  background: #f8f9fa;
+}
+
+/* AVATAR SMALL */
+.avatar-sm {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0d6efd, #4dabf7);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* TEXT */
+.line-text .name {
+  font-size: 12.5px;
+  line-height: 1.1;
+}
+
+/* BUTTON SMALL */
+.btn-xs {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+/* SEARCH + HEADER CLEAN */
+.modal-header {
+  padding: 8px 12px;
+}
+
+.modal-body {
+  padding: 8px !important;
+}

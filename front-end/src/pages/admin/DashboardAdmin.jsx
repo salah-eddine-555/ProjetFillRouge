@@ -3,6 +3,7 @@ import './style/dashboard.css';
 import { getStatistiques, getUsers } from '../../services/AdminService';
 import { useEffect } from 'react';
 import Sidebar from '../../components/Sidebar';
+import {UpdateStatut} from '../../services/UserService';
     
 
     export default function DashboardAdmin() {
@@ -16,14 +17,11 @@ import Sidebar from '../../components/Sidebar';
       const [users, setUsers] = useState([]);
       const [filter, setFilter] = useState("tous");
 
-      useEffect(() => {
-          const fetchData = async () => {
-            try{ 
-                const res = await getStatistiques();
-                const user = await getUsers();
-                console.log(user.data);
-                // console.log(user.data.eleves);
-                const formUser = [
+    
+  
+      const fetchUsers = async () => {
+          const user = await getUsers();
+           const formUser = [
                   ...user.data.professeurs.map((u) => ({
                     ...u,
                     role: 'professeur'
@@ -32,18 +30,38 @@ import Sidebar from '../../components/Sidebar';
                     ...u,
                     role: "eleve"
                   }))
-
                 ]
-
+                 setUsers(formUser);
+      }
+      
+       const fetchData = async () => {
+            try{ 
+                const res = await getStatistiques();
                 setData(res.data);
                
-                setUsers(formUser);
+               
                
             }catch(error){
               console.log(error);
             }  
         }
+        const changerStatut = async (id) => {
+             console.log(id);
+
+             try {
+               const res = await UpdateStatut(id);
+               console.log(res.data.message);
+               fetchUsers();
+
+             } catch (error) {
+               console.log(error.response?.data);
+             }
+      };
+
+      useEffect(() => {
+         
         fetchData();
+        fetchUsers()
       },[])
 
        const filterUsers = users.filter((user) => {
@@ -153,13 +171,14 @@ import Sidebar from '../../components/Sidebar';
                                     </td>
                                     
                                     <td>
-                                      <span className={`badge-status ${
-                                        user.is_active
-                                          ? "badge-active"
-                                          : "badge-inactive"
-                                      }`}>
+                                     <button
+                                        className={`badge-status ${
+                                          user.is_active ? "badge-active" : "badge-inactive"
+                                        }`}
+                                        onClick={() => changerStatut(user.id)}
+                                      >
                                         {user.is_active ? "Active" : "Inactive"}
-                                      </span>
+                                      </button>
                                     </td>
                                   </tr>
                                 ))}

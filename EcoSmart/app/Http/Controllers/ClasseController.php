@@ -52,7 +52,7 @@ class ClasseController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Détails de la classe',
-            'data' => $classe
+            'data' => $classe->load('prof.user'),
         ]);
     }
 

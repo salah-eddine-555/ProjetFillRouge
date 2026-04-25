@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\StatistiqueAdminController;
 use App\Http\Controllers\AssingController;
+use App\Http\Controllers\UserController;
 
 
 
@@ -50,9 +51,15 @@ Route::middleware('auth:sanctum')->group(function(){
 
             //Assign des eleves
             Route::post('/assgine/eleves', [AssingController::class, 'AssingEelevsToClasse']);
+            Route::post('/assgine/prof', [AssingController::class, 'AssigneProfToClasse']);
+
             Route::get('/Nonassgine', [AssingController::class, 'getElevesNonAssigne']);
             Route::get('/assgine/prof', [AssingController::class, 'assigneProfToClasse']);
             Route::get('/professeurs', [AssingController::class, 'getProfesseurs']);
+            Route::post('/retirer', [AssingController::class, 'RetireEleveFromClasse']);
+
+            Route::patch('/users/{id}/statut', [UserController::class, 'UpdateStatutUser']);
+
                 
         });
 

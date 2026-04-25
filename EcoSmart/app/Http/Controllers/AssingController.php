@@ -48,20 +48,42 @@ class AssingController extends Controller
         ]);
     }
 
-    public function assigneProfToClasse(Request $request){
+    public function AssigneProfToClasse(Request $request){
 
-        $request->validate([
+        $data = $request->validate([
             'classe_id' => 'required|exists:classes,id',
             'prof_id' => 'required|exists:profile_professeurs,id',
         ]);
-        $classe = Classe::findOrFail($request->classe_id);
+        $classe = $this->service->assigneProf($data);
 
-        $classe->prof_id = $request->prof_id;
-        $classe->save();
         return response()->json([
             'success'=> true,
             'message' => 'le prof a assigne a ce classe',
-            'data' => $classe->load('prof'),
+            'data' => $classe->load('prof.user'),
         ]);
+    }
+
+    public function RetireEleveFromClasse(Request $request){
+
+        $data  = $request->validate([
+            'classe_id' => 'required|exists:classes,id',
+            'eleve_id' => 'required|exists:profile_eleves,id',
+        ]);
+
+        $result = $this->service->RetirerELeve($data);
+
+        if(!$result){
+            return response()->json([
+                'success'=> false,
+                'message' => 'cette eleves n appartient a cette classe'
+            ], 400);
+        }
+        
+        return response()->json([
+            'success'=> true,
+            'message' => 'cette eleve est retiree avec succe',
+        ]);
+        
+       
     }
 }
