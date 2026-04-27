@@ -6,6 +6,8 @@ use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\EleveMiddleware;
 use App\Http\Middleware\ProfesseurMiddleware;
+use App\Http\Middleware\ActiveCompteMiddleware;
+
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -19,7 +21,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin'=> AdminMiddleware::class,
             'eleve'=> EleveMiddleware::class,
             'prof'=> ProfesseurMiddleware::class,
+            'is_active'=> ActiveCompteMiddleware::class
         ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

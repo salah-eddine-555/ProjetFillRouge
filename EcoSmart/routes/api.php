@@ -9,6 +9,10 @@ use App\Http\Controllers\StatistiqueAdminController;
 use App\Http\Controllers\AssingController;
 use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\StatistiqueProfController;
+
+
+
 
 
 Route::post('/register', [AuthController::class , 'register']);
@@ -21,7 +25,7 @@ Route::get('/classes/{classe}', [ClasseController::class, 'show']);
 
 
 
-Route::middleware('auth:sanctum')->group(function(){
+Route::middleware(['auth:sanctum', 'is_active'])->group(function(){
     Route::post('/logout', [AuthController::class , 'logout']);
     Route::put('/profile', [ProfileController::class, 'updateProfile']);
 
@@ -66,6 +70,7 @@ Route::middleware('auth:sanctum')->group(function(){
     //Routes pour les actions professeur
     Route::middleware('prof')->group(function(){
             Route::post('/profile/prof', [ProfileController::class, 'storeProfileProf']);
+            Route::get('/prof/statistiques', [StatistiqueProfController::class, 'Statistiques']);
     
     });
 

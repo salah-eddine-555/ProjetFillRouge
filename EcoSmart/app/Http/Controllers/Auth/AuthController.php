@@ -52,6 +52,13 @@ class AuthController extends Controller
             return response()->json(['message'=> 'email ou mote de passe incorrect'], 401);
         };
 
+        if(!$user->is_active){
+            return response()->json([
+                'success'=> false,
+                'message' => 'ce compte est desactive par administration '
+            ], 403);
+        }
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
