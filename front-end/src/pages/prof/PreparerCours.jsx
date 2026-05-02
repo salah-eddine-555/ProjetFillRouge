@@ -4,6 +4,7 @@ import './styles/prepaereCour.css';
 import {useParams} from 'react-router-dom';
 import {showCour, getDocumentsCour} from '../../services/courService';
 import DocumentModal from "./DocumentModal";
+import {addDoc } from '../../services/DocumentService';
 
 
 
@@ -43,18 +44,22 @@ const PreparerCours = () => {
 
 
 
-  const handleSave = (data) => {
-    if (data.id) {
-      setDocs(prev => prev.map(d => d.id === data.id ? { ...d, ...data } : d))
-    } else {
-      setDocs(prev => [...prev, {
-        ...data,
-        id: Date.now(),
-        updatedAt: new Date().toLocaleDateString('fr-FR'),
-        images: [],
-      }])
+  const handleSave = async (data) => {
+    try{
+        if(!data.id){
+        const res = await addDoc(id, data);
+        console.log(res.data.data);
+       
+    }else{
+
+
     }
-    setModal(null)
+    await fetchDocuments(id)
+    setModal(null);
+    }catch(error){
+        console.log(console.log(error.response.data));
+    }
+  
   }
 
   const handleDelete = (docId) => {
