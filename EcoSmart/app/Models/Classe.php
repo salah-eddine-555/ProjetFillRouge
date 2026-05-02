@@ -25,4 +25,8 @@ class Classe extends Model
     public function prof(){
         return $this->belongsTo(ProfileProf::class, 'prof_id');
     }
+
+    public function cours(){
+        return $this->belongsToMany(Cour::class, 'classe_cours');
+    }
 }

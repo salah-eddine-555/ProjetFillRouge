@@ -9,7 +9,7 @@ class ProfileProf extends Model
 {
     protected $table = 'profile_professeurs';
 
-    protected $fillable = ['specialite', 'experiences', 'user_id'];
+    protected $fillable = ['Etat_professionelle', 'experiences', 'user_id'];
 
     public function user(){
         return $this->belongsTo(User::class);

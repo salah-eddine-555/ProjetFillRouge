@@ -20,7 +20,7 @@ class ProfileController extends Controller
     
     public function storeProfileProf(ProfileProfFormRequest $request){
         $user = Auth::user();
-
+        
         $this->service->createProfileProf($request->validated());
 
         return response()->json([

@@ -1,0 +1,13 @@
+import API from './Api'
+
+
+
+export const getStatistiques = () =>  API.get('/prof/statistiques');
+
+export const getCoursProf = () => API.get('/prof/cours');
+
+export const addCour = (data) => API.post('/cours', data);
+
+export const showCour  = (id) => API.get(`/cours/${id}`);
+
+export const getDocumentsCour = (id) => API.get(`/documents/${id}/cours`)

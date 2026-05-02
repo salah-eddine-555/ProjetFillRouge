@@ -29,7 +29,7 @@ class ServiceProfile {
 
     public function UpdateProfileUser($data){
         $user = Auth::user();
-
+    
         if(isset($data['firstname'])){
             $user->firstname = $data['firstname'];
         }
@@ -47,14 +47,16 @@ class ServiceProfile {
 
       if ($user->role->name === 'professeur' && $user->prof) {
 
-            if (isset($data['specialite'])) {
-                $user->prof->specialite = $data['specialite'];
+            if (isset($data['Etat_professionelle'])) {
+                $user->prof->Etat_professionelle = $data['Etat_professionelle'];
+              
             }
 
             if (isset($data['experiences'])) {
                 $user->prof->experiences = $data['experiences'];
+              
             }
-
+           
             $user->prof->save();
     }
 

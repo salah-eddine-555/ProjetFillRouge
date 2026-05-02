@@ -18,12 +18,19 @@ class StatistiqueProfController extends Controller
 
         $totalCours = $prof->cours()->count();
 
+        $classes = $prof->classes()->with('niveau')->withCount('eleves')->get();
+    
+
             return response()->json([
                 'success'=> true,
                 'data' => [
                     'totalClasses'=> $totalClasses,
-                    'totalEleves' => $totalEeves
+                    'totalEleves' => $totalEeves,
+                    'totalCours' => $totalCours,
+                    'classes' => $classes
                 ]
             ]);
     }
+
+    
 }

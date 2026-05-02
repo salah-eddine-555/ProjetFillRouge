@@ -6,6 +6,9 @@ import Logout from './pages/Auth/Logout';
 
 import Eleve from './pages/Eleve';
 import DashboardProf from './pages/prof/DashboardProf';
+import Classe from './pages/prof/Classe';
+import Cour from './pages/prof/Cour';
+import PreparerCours from './pages/prof/PreparerCours';
 
 import Home from './pages/Home';
 import Profile from './pages/Profile';
@@ -15,6 +18,8 @@ import DashboardAdmin from './pages/admin/DashboardAdmin';
 import MangeNiveauxMatieres from './pages/admin/ManageNiveauxMatieres';
 import GestionClasses from './pages/admin/GestionClasses';
 import DetailsClasse from './pages/admin/DetailsClasse';
+
+
 
 
 
@@ -39,6 +44,10 @@ import DetailsClasse from './pages/admin/DetailsClasse';
             <Route path="admin/niveaux" element={<MangeNiveauxMatieres />}/>
             <Route path="admin/classes" element = {<GestionClasses />} />
             <Route path="/admin/classes/:id" element = {<DetailsClasse />}/>
+
+            <Route path="/classe/:id" element={<Classe />} />
+            <Route path="/prof/cours" element={<Cour/>}/>
+            <Route path="/preparer-cours/:id" element={<PreparerCours />}/>
         </Routes>
       </>
     )

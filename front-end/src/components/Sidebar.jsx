@@ -52,7 +52,7 @@ export default function Sidebar() {
         {role === "professeur" && (
           <>
             <li className="nav-item mb-2">
-              <Link className="nav-link text-dark px-3" to="/prof/dashboard">
+              <Link className="nav-link text-dark px-3" to="/professeur">
                 Mon Dashboard
               </Link>
             </li>

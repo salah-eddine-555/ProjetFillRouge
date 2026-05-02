@@ -28,7 +28,7 @@ class UpdateUserProfileRequest extends FormRequest
             'adresse'   => 'sometimes|string|max:255',
 
     
-            'specialite'  => 'sometimes|string|max:255',
+            'Etat_professionelle' => 'required|in:Prof titulaire,Prof vacataire',
             'experiences' => 'sometimes|integer',
 
             'sex'          => 'sometimes|in:H,F',

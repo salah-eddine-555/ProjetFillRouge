@@ -320,3 +320,263 @@
     padding: 16px;
   }
 }
+
+
+
+/* container */
+.dp-classes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* card */
+.dp-class {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  transition: 0.3s ease;
+  border-left: 5px solid #4f46e5;
+}
+
+.dp-class:hover {
+  transform: translateY(-5px);
+}
+
+/* header */
+.dp-class-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dp-class h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* body */
+.dp-class-body {
+  margin-top: 12px;
+}
+
+.students {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+
+/* container */
+.dp-classes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* كان 250 */
+  gap: 24px;
+}
+
+/* card */
+.dp-class {
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px; /* زيدناها */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+  border-left: 6px solid #4f46e5;
+}
+
+.dp-class:hover {
+  transform: translateY(-6px) scale(1.01);
+}
+
+/* header */
+.dp-class-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.dp-class h3 {
+  font-size: 20px; /* كان صغير */
+  font-weight: 600;
+  color: #111827;
+}
+
+/* badge */
+.badge {
+  background: #4f46e5;
+  color: white;
+  padding: 6px 12px; /* كبرناها */
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* body */
+.dp-class-body {
+  margin-top: 10px;
+}
+
+.students {
+  font-size: 15px; /* كبرناها */
+  color: #6b7280;
+  font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+.dp-section {
+  margin-top: 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+}
+ 
+.dp-section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+ 
+.dp-section-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+ 
+.dp-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #14532d;
+  margin: 0;
+}
+ 
+.dp-section-sub {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 2px 0 0 0;
+}
+ 
+/* TABLE */
+.dp-table-wrapper {
+  padding: 0 8px 8px;
+}
+ 
+.dp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+ 
+.dp-table thead tr {
+  background: #f9fafb;
+}
+ 
+.dp-table thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #f0f0f0;
+}
+ 
+.dp-table tbody tr {
+  border-bottom: 1px solid #f9fafb;
+  transition: background 0.15s;
+}
+ 
+.dp-table tbody tr:hover {
+  background: #f0fdf4;
+}
+ 
+.dp-table tbody tr:last-child {
+  border-bottom: none;
+}
+ 
+.dp-table td {
+  padding: 14px 16px;
+  color: #374151;
+  vertical-align: middle;
+}
+ 
+.dp-table-index {
+  color: #9ca3af !important;
+  font-weight: 600;
+  width: 40px;
+}
+ 
+/* COURS NAME CELL */
+.dp-cours-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+ 
+.dp-cours-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+ 
+/* BADGE ACTIF */
+.dp-badge-actif {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #dcfce7;
+  color: #16a34a;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+ 
+/* EMPTY STATE */
+.dp-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  color: #9ca3af;
+  gap: 12px;
+}
+ 
+.dp-empty-icon {
+  font-size: 40px;
+  opacity: 0.4;
+}
+ 
+.dp-empty p {
+  font-size: 14px;
+  margin: 0;
+}

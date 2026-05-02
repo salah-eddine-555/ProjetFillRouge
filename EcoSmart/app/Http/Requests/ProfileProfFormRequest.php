@@ -24,13 +24,13 @@ class ProfileProfFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'specialite' => 'required|string|max:255',
+            'Etat_professionelle' => 'required|in:Prof titulaire,Prof vacataire',
             'experiences' => 'required|integer',
         ];
     }
     public function messages(){
         return [
-            'specialite.required' =>' le specialite est oblegee',
+            'Etat_professionelle.required' =>' le specialite est oblegee',
             'experiences.required'  => "L'expérience est obligatoire.",
             'experiences.integer' => 'l expreince doit etre entie ',
         ];

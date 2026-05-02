@@ -8,8 +8,10 @@ use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\StatistiqueAdminController;
 use App\Http\Controllers\AssingController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DocumentController;
 
 use App\Http\Controllers\StatistiqueProfController;
+use App\Http\Controllers\CourController;
 
 
 
@@ -29,6 +31,8 @@ Route::middleware(['auth:sanctum', 'is_active'])->group(function(){
     Route::post('/logout', [AuthController::class , 'logout']);
     Route::put('/profile', [ProfileController::class, 'updateProfile']);
 
+    Route::get('/matieres', [MatiereController::class, 'index']);
+
     //Routes pour les actions admin 
         Route::middleware('admin')->group(function(){
             //statistiques pour admin
@@ -43,7 +47,7 @@ Route::middleware(['auth:sanctum', 'is_active'])->group(function(){
             
             // Gestion des matieres
 
-            Route::get('/matieres', [MatiereController::class, 'index']);
+            
             Route::post('/matieres', [MatiereController::class, 'store']);
             Route::put('/matieres/{matiere}', [MatiereController::class, 'update']);
             Route::delete('/matieres/{matiere}', [MatiereController::class, 'destroy']);
@@ -71,6 +75,25 @@ Route::middleware(['auth:sanctum', 'is_active'])->group(function(){
     Route::middleware('prof')->group(function(){
             Route::post('/profile/prof', [ProfileController::class, 'storeProfileProf']);
             Route::get('/prof/statistiques', [StatistiqueProfController::class, 'Statistiques']);
+
+            // route pours recupres les cours cree par le prof a connecter 
+
+            Route::get('/prof/cours', [CourController::class, 'getCourParProf']);
+
+            //Gestion des cours
+            Route::post('/cours', [CourController::class, 'store']);
+            Route::get('/cours/{cour}', [CourController::class, 'show']);
+            Route::post('/cours/{cour}/assign-classe', [CourController::class, 'assignClasseToCours']);
+
+            Route::post('/cours/{cour}/documents', [DocumentController::class, 'store']);
+            //gestion des documents 
+            Route::get('/documents/{cour}/cours', [DocumentController::class, 'getDocumentParCour']);
+            Route::put('/documents/{document}', [DocumentController::class, 'update']);
+
+            Route::delete('/documents/{document}', [DocumentController::class, 'destroy']);
+
+            Route::get('/classe/{classe}/cours', [CourController::class, 'CourParClasse']);
+            
     
     });
 

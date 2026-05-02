@@ -14,7 +14,7 @@ export default function UpdateProfileForm() {
        lastname: "",
        email: "",
        adresse: "",
-       specialite: "",
+       Etat_professionelle: "",
        experiences: "",
        sex: "",
        number_parent: ""
@@ -31,7 +31,8 @@ export default function UpdateProfileForm() {
           lastname: user.lastname || "",
           adresse: user.adresse || "",
           email: user.email || "",
-          specialite: user.profile?.specialite || "",
+
+           Etat_professionelle: user.profile?.Etat_professionelle || "",
           experiences: Number(user.profile?.experiences) || "",
           sexe: user.profile?.sexe || "",
           number_parent: String(user.profile?.number_parent) || "",
@@ -52,7 +53,7 @@ export default function UpdateProfileForm() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-
+      console.log(formData);
       try{
           const res = await updateProfile(formData);
           dispatch(setUser(res.data.data));
@@ -142,18 +143,16 @@ export default function UpdateProfileForm() {
 
               <div className="row g-3 mb-4">
 
-                <div className="col-md-6">
-                  <label htmlFor="specialite" className="upf-label form-label">Spécialité</label>
-                  <input
-                    type="text"
-                    id="specialite"
-                    name="specialite"
-                    value={formData.specialite}
-                    onChange={handleChange}
-                    className="form-control upf-input"
-                    placeholder="Ex : Mathématiques"
-                  />
-                </div>
+           <select
+  name="Etat_professionelle"
+  value={formData.Etat_professionelle}
+  onChange={handleChange}
+  className="form-control upf-input"
+>
+  <option value="">-- Sélectionner --</option>
+  <option value="Prof titulaire">Prof titulaire</option>
+  <option value="Prof vacataire">Prof vacataire</option>
+</select>
 
                 <div className="col-md-6">
                   <label htmlFor="experiences" className="upf-label form-label">Expérience (ans)</label>

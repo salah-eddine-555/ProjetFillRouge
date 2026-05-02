@@ -52,9 +52,11 @@ export default function Profile() {
                             {user?.role === 'professeur' && user?.profile && (
                                 <>
                                     <p className="section-label mt-4">Profil professeur</p>
-                                    <div className="info-row">
-                                        <span className="info-key">Spécialité</span>
-                                        <span className="info-value">{user.profile.specialite}</span>
+                                     <div className="info-row">
+                                        <span className="info-key">État professionnel</span>
+                                        <span className="info-value">
+                                            {user.profile?.Etat_professionelle}
+                                        </span>
                                     </div>
                                     <div className="info-row">
                                         <span className="info-key">Expérience</span>
