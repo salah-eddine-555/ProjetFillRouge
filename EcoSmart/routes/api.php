@@ -12,6 +12,7 @@ use App\Http\Controllers\DocumentController;
 
 use App\Http\Controllers\StatistiqueProfController;
 use App\Http\Controllers\CourController;
+use App\Http\Controllers\EleveController;
 
 
 
@@ -100,6 +101,7 @@ Route::middleware(['auth:sanctum', 'is_active'])->group(function(){
     //Routes pour les actions eleve
     Route::middleware('eleve')->group(function(){
         Route::post('/profile/eleve', [ProfileController::class, 'storeProfileEleve']);
+        Route::get('/eleve/info', [EleveController::class, 'index']);
     });
 
     

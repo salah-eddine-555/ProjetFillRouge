@@ -4,11 +4,11 @@ import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import Logout from './pages/Auth/Logout';
 
-import Eleve from './pages/Eleve';
 import DashboardProf from './pages/prof/DashboardProf';
 import Classe from './pages/prof/Classe';
 import Cour from './pages/prof/Cour';
 import PreparerCours from './pages/prof/PreparerCours';
+import DashboardEleve from './pages/eleve/DashboardEleve';
 
 import Home from './pages/Home';
 import Profile from './pages/Profile';
@@ -35,7 +35,7 @@ import DetailsClasse from './pages/admin/DetailsClasse';
             <Route path="/logout" element={<Logout />}/>
 
             <Route path="/professeur" element={<DashboardProf />}/>
-            <Route path="/eleve" element={<Eleve />}/>
+            <Route path="/eleve" element={<DashboardEleve />}/>
 
             <Route path="/admin" element={<DashboardAdmin />}/>
             <Route path="/profile" element={<Profile />}/>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import { getClasseById } from "../../services/classeService";
-import { getCoursProf } from "../../services/courService";
+import { getCoursProf, assignCourToClasse } from "../../services/courService";
 import { useParams } from "react-router-dom";
 import "./styles/Classe.css";
  
@@ -11,11 +11,13 @@ const Classe = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedCours, setSelectedCours] = useState("");
   const [cours, setCours] = useState([]);
+  const [messages, setMessages] = useState("");
  
+  
     const fetchCoursProf = async () => {
       try {
         const res = await getCoursProf();
-        console.log(res.data.data);
+        console.log(res.data.data.data);
         setCours(res.data.data);
       } catch (error) {
         console.error("Erreur fetch cours:", error);
@@ -36,12 +38,29 @@ const Classe = () => {
     fetchCoursProf();
   }, []);
  
-  const handleAssigner = () => {
+  const handleAssigner = async() => {
     if (!selectedCours) return;
-    console.log("Cours assigné :", selectedCours, "à la classe :", id);
-    setShowModal(false);
-    setSelectedCours("");
+
+    try{
+        const res = await assignCourToClasse(selectedCours, id);
+        console.log(res.data);
+        setMessages(res.data.message);
+        console.log("cour assigne avec success");
+
+        setShowModal(false);
+    }catch(error){
+      console.log(error.response?.data);
+    }
+
   };
+
+  useEffect(() => {
+  if (messages) {
+    setTimeout(() => {
+      setMessages("");
+    }, 3000);
+  }
+}, [messages]);
  
   if (!classe) {
     return (
@@ -55,12 +74,17 @@ const Classe = () => {
       </div>
     );
   }
- 
+
+
+   
   return (
     <div className="classe-page">
       <Sidebar />
  
       <div className="classe-content">
+        {messages && (
+          <div className="alert alert-success">{messages}</div>
+        )}
  
         {/* Header */}
         <div className="classe-header">

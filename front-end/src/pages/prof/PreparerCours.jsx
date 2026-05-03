@@ -4,7 +4,7 @@ import './styles/prepaereCour.css';
 import {useParams} from 'react-router-dom';
 import {showCour, getDocumentsCour} from '../../services/courService';
 import DocumentModal from "./DocumentModal";
-import {addDoc } from '../../services/DocumentService';
+import {addDoc, updateDoc, deleteDoc } from '../../services/DocumentService';
 
 
 
@@ -47,12 +47,11 @@ const PreparerCours = () => {
   const handleSave = async (data) => {
     try{
         if(!data.id){
-        const res = await addDoc(id, data);
-        console.log(res.data.data);
+       await addDoc(id, data);
+      
        
     }else{
-
-
+       await updateDoc(data.id, data);
     }
     await fetchDocuments(id)
     setModal(null);
@@ -62,24 +61,11 @@ const PreparerCours = () => {
   
   }
 
-  const handleDelete = (docId) => {
-    if (window.confirm('Supprimer ce document ?'))
-      setDocs(prev => prev.filter(d => d.id !== docId))
+  const handleDelete = async (docId) => {
+       await deleteDoc(docId);
+       fetchDocuments(id);
   }
 
-  const handleAddImage = (docId) => {
-    // TODO: file picker + upload → remplacer par la vraie logique back-end
-    const fake = { id: Date.now(), path: '/placeholder.png' }
-    setDocs(prev => prev.map(d =>
-      d.id === docId ? { ...d, images: [...d.images, fake] } : d
-    ))
-  }
-
-  const handleDeleteImage = (docId, imgId) => {
-    setDocs(prev => prev.map(d =>
-      d.id === docId ? { ...d, images: d.images.filter(i => i.id !== imgId) } : d
-    ))
-  }
 
   return (
     <div className="dp-layout">
@@ -147,9 +133,10 @@ const PreparerCours = () => {
                 </div>
               </div>
 
-              <div className="pc-doc-body">
-                <p className="pc-doc-txt">{doc.content}</p>
-              </div>
+             <div
+            className="pc-doc-txt"
+            dangerouslySetInnerHTML={{ __html: doc.content }}
+            ></div>
 
               <div className="pc-doc-ft">
                 <span className="pc-doc-date">Modifié le {doc.updatedAt}</span>
