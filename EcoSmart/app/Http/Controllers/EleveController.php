@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProfileEleve;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Cour;
 
 class EleveController extends Controller
 {
@@ -17,7 +19,7 @@ class EleveController extends Controller
         $nbrEleves = $classe->eleves()->count();
         $nbrCour = $classe->cours()->count();
         $prof = $classe->prof;
-        
+       
 
         if (!$eleve) {
             return response()->json([
@@ -27,9 +29,31 @@ class EleveController extends Controller
 
         return response()->json([
             "classe" => $classe,
-            "professeur" => $prof,
+            "professeur" => $prof->user,
             "cours" => $nbrCour,
             "nombre_eleves" => $nbrEleves
+        ]);
+    }
+
+    public function getCourEleve(){
+        $eleve = Auth::user()->eleve;
+        // dd($eleve->id);
+        $cours = $eleve->classe->cours;
+
+
+        return response()->json([
+            'success'=> true,
+            'data' => $cours->load('matiere')
+        ]);
+    }
+
+    public function showDetailsCour(Cour $cour){
+
+        $details = $cour->load(['matiere', 'documents']);
+   
+
+        return response()->json([
+            'data' => $details,
         ]);
     }
         

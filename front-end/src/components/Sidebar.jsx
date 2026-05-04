@@ -40,11 +40,6 @@ export default function Sidebar() {
               </Link>
             </li>
 
-            <li className="nav-item mb-2">
-              <Link className="nav-link text-dark px-3" to="/admin/eleves">
-                Gestion des Élèves
-              </Link>
-            </li>
           </>
         )}
 
@@ -63,16 +58,8 @@ export default function Sidebar() {
               </Link>
             </li>
 
-            <li className="nav-item mb-2">
-              <Link className="nav-link text-dark px-3" to="/prof/absences">
-                Absences
-              </Link>
-            </li>
-             <li className="nav-item mb-2">
-              <Link className="nav-link text-dark px-3" to="/prof/notificaions">
-                Notificaitons
-              </Link>
-            </li>
+           
+           
           </>
         )}
 
@@ -95,11 +82,6 @@ export default function Sidebar() {
 
       </ul>
 
-      <div className="mt-4">
-        <button className="btn btn-success w-100">
-          + Nouveau Rapport
-        </button>
-      </div>
 
     </nav>
   );

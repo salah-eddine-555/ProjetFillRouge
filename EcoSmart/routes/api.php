@@ -102,6 +102,8 @@ Route::middleware(['auth:sanctum', 'is_active'])->group(function(){
     Route::middleware('eleve')->group(function(){
         Route::post('/profile/eleve', [ProfileController::class, 'storeProfileEleve']);
         Route::get('/eleve/info', [EleveController::class, 'index']);
+        Route::get('/eleve/cours', [EleveController::class, 'getCourEleve']);
+        Route::get('/eleve/cour/{cour}', [EleveController::class, 'showDetailsCour']);
     });
 
     

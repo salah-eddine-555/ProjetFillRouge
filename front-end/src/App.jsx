@@ -9,6 +9,8 @@ import Classe from './pages/prof/Classe';
 import Cour from './pages/prof/Cour';
 import PreparerCours from './pages/prof/PreparerCours';
 import DashboardEleve from './pages/eleve/DashboardEleve';
+import ElevesCours from './pages/eleve/ElevesCours';
+import DetailsCour from './pages/eleve/DetailsCour';
 
 import Home from './pages/Home';
 import Profile from './pages/Profile';
@@ -48,6 +50,8 @@ import DetailsClasse from './pages/admin/DetailsClasse';
             <Route path="/classe/:id" element={<Classe />} />
             <Route path="/prof/cours" element={<Cour/>}/>
             <Route path="/preparer-cours/:id" element={<PreparerCours />}/>
+            <Route path="/eleve/cours" element={<ElevesCours />}/>
+            <Route path="/cours/eleve/:id" element={<DetailsCour />}/>
         </Routes>
       </>
     )
