@@ -354,3 +354,40 @@
     margin-left: auto;
   }
 }
+
+
+/* Liens nav à droite */
+.eco-link-ghost {
+  color: #374151 !important;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 0.83rem;
+  font-weight: 500;
+  transition: color 0.2s, background 0.2s;
+}
+.eco-link-ghost:hover { color: #059669 !important; background: #f0fdf4; }
+
+.eco-link-outline {
+  color: #059669 !important;
+  border: 1.5px solid #6ee7b7 !important;
+  border-radius: 8px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.eco-link-outline:hover { background: #ecfdf5 !important; border-color: #10b981 !important; }
+
+/* Séparateur vertical */
+.eco-nav-divider {
+  width: 1px; height: 22px;
+  background: #e5e7eb;
+  margin: 0 4px;
+}
+
+/* Avatar initiales */
+.profile-avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: linear-gradient(135deg, #059669, #34d399);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-weight: 700; color: white;
+}

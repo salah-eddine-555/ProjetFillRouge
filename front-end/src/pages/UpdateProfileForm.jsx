@@ -144,15 +144,15 @@ export default function UpdateProfileForm() {
               <div className="row g-3 mb-4">
 
            <select
-  name="Etat_professionelle"
-  value={formData.Etat_professionelle}
-  onChange={handleChange}
-  className="form-control upf-input"
->
-  <option value="">-- Sélectionner --</option>
-  <option value="Prof titulaire">Prof titulaire</option>
-  <option value="Prof vacataire">Prof vacataire</option>
-</select>
+            name="Etat_professionelle"
+            value={formData.Etat_professionelle}
+            onChange={handleChange}
+            className="form-control upf-input"
+            >
+                <option value="">-- Sélectionner --</option>
+                <option value="Prof titulaire">Prof titulaire</option>
+                <option value="Prof vacataire">Prof vacataire</option>
+            </select>
 
                 <div className="col-md-6">
                   <label htmlFor="experiences" className="upf-label form-label">Expérience (ans)</label>

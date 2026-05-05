@@ -18,6 +18,7 @@ export default function DetailsClasse() {
     const [data, setData] = useState({
       classe_id : id,
       eleves_ids: [],
+      professeur_id : ''
     })
 
     
@@ -73,16 +74,18 @@ export default function DetailsClasse() {
     }
     const validerProf = async () => {
         try {
-          await assigneProf({
+          console.log(data);
+          const res = await assigneProf({
             classe_id: id,
             prof_id: data.professeur_id,
           });
+        
         
           setShowModalProf(false);
           fetchClasse();
         
         } catch (error) {
-          console.log(error);
+          console.log(data.response?.data.error);
         }
   };
 
@@ -112,15 +115,15 @@ export default function DetailsClasse() {
   return (
     <div className="details-layout">
 
-      {/* Sidebar */}
+
       <aside className="sidebar-area">
         <Sidebar />
       </aside>
 
-      {/* Main Content */}
+
       <main className="content-area">
 
-        {/* Header */}
+       
         <div className="page-header">
           <div>
             <h3>Détails de la classe</h3>
@@ -140,7 +143,7 @@ export default function DetailsClasse() {
           </div>
         </div>
 
-        {/* Class Info */}
+     
         <div className="card-box">
           <div className="grid-3">
 
@@ -162,7 +165,7 @@ export default function DetailsClasse() {
           </div>
         </div>
 
-        {/* Professor */}
+        
         <div className="card-box">
           <div className="card-header">
             <small>professeur : </small>
@@ -186,7 +189,7 @@ export default function DetailsClasse() {
           </div>
         </div>
 
-        {/* Students */}
+      
         <div className="card-box">
           <div className="card-header flex-between">
             <span>Liste des élèves</span>
@@ -230,20 +233,20 @@ export default function DetailsClasse() {
         </div>
                   {showModal && (
                     <>
-                      {/* Backdrop */}
+                    
                       <div
                         className="modal-backdrop fade show"
                         onClick={() => setShowModal(false)}
                       ></div>
 
-                      {/* Modal */}
+                   
                       <div className="modal d-block custom-modal-wrapper" tabIndex="-1">
                   
                         <div className="modal-dialog modal-dialog-centered custom-modal">
                   
                           <div className="modal-content border-0 shadow-lg rounded-4 modal-fixed-height">
                   
-                            {/* Header */}
+                          
                             <div className="modal-header bg-white border-bottom py-2">
                               <h5 className="modal-title fw-bold fs-6">
                                 Assigner des élèves
@@ -340,7 +343,7 @@ export default function DetailsClasse() {
                                   />
                                 </div>
 
-                                {/* Body scrollable */}
+                              
                                 <div className="modal-body modal-scroll p-2">
 
                                   {professeur.map((p) => (
@@ -358,10 +361,10 @@ export default function DetailsClasse() {
                                         }))
                                       }
                                     >
-                                      <strong>{p.lastname}</strong>
+                                      <strong>{p.user?.firstname}</strong>
                                     
                                       <div className="small">
-                                        <strong>Spécialité :</strong> {p.prof?.specialite}
+                                        <strong>email :</strong> {p.user?.email}
                                       </div>
                                     </div>
                                   ))}

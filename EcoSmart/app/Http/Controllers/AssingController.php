@@ -7,6 +7,7 @@ use App\Services\AssignService;
 use App\Models\Classe;
 use App\Models\ProfileEleve;
 use App\Models\User;
+use App\Models\ProfileProf;
 
 use App\Http\Requests\AssignElevesToClasseRequest;
 
@@ -41,10 +42,10 @@ class AssingController extends Controller
 
     public function getProfesseurs(){
 
-        $user = User::with('prof')->get();
+        $profs = ProfileProf::with('user')->get();
 
         return response()->json([
-            'data' =>  $user
+            'data' => $profs
         ]);
     }
 
@@ -54,6 +55,8 @@ class AssingController extends Controller
             'classe_id' => 'required|exists:classes,id',
             'prof_id' => 'required|exists:profile_professeurs,id',
         ]);
+        // dd($data);
+
         $classe = $this->service->assigneProf($data);
 
         return response()->json([

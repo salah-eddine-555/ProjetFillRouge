@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function CreateProfileForm(){
     const [formData, setFormData] = useState({
-        "specialite": "",
+        "Etat_professionelle": "",
         "experiences": "",
         "phone": "",
         "sex": ""
@@ -62,13 +62,13 @@ export default function CreateProfileForm(){
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-8 col-lg-6">
 
-                        {/* Header card */}
+                       
                         <div className="profile-header-card text-center mb-3">
                             <h4 className="profile-name mb-1">Créer mon profil</h4>
                             <span className="role-badge">{user?.role}</span>
                         </div>
 
-                        {/* Form card */}
+                    
                         <div className="profile-info-card mb-3">
                             
                             <form onSubmit={handleSubmit}>
@@ -79,21 +79,23 @@ export default function CreateProfileForm(){
 
                                         <div className="form-field">
                                             <label htmlFor="sp" className="field-label">Spécialité</label>
-                                            <input
-                                                type="text"
-                                                id="sp"
-                                                name="specialite"
-                                                onChange={handleChange}
-                                                className="field-input"
-                                                placeholder="Votre spécialité"
-                                            />
-                                            {errors.specialite && (
+                                                <select
+                                                     name="Etat_professionelle"
+                                                     value={formData.Etat_professionelle}
+                                                     onChange={handleChange}
+                                                     className="form-control upf-input"
+                                                >
+                                                    <option value="">-- Sélectionner --</option>
+                                                    <option value="Prof titulaire">Prof titulaire</option>
+                                                    <option value="Prof vacataire">Prof vacataire</option>
+                                                </select>
+                                                {errors.Etat_professionelle && (
                                                 <p className="error-text text-danger">{errors.specialite}</p>
                                             )}
                                     </div>
 
                                         <div className="form-field">
-                                            <label htmlFor="exp" className="field-label">Expériences</label>
+                                            <label htmlFor="exp" className="field-label">Etat_professionelle</label>
                                             <input
                                                 type="number"
                                                 id="exp"
